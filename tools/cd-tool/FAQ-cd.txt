@@ -1,0 +1,1421 @@
+                  ._.                                     _____          .____.     __    
+         .JNNNN) (NNNN_.               NNNNNNNNNNNNL   .NNNNNNNNL      JNNNNNNNN.  (NN    
+       .NNNNNNN) NNF4NNNL              NNNNNNNNNNNNF .NNNF"  "4NN    JNNN"` `"NN)  NN)    
+      JNN"  `NF (NN   `NNN.                NN)      (NNF      (NN   NNN`      NN) (NN     
+    .NNF        NN)     4NN               (NN      JNN`       (NN .NNF        NN) NN)     
+   (NN`        (NN      (NN               JN)     (NN`       .NN` NNF        JNF (NN      
+  (NN`         NN)      (NF ._____.       NN      NN)        NNF (NN        (NN` NN`      
+  NN)         (NF      .NN` NNNNNN`      (NF     (NN       .NNF  NN)       JNN` (NF       
+ (NN     _N)  NN`     JNN`               NN`     (NN.     JNNF   NNL     .NNN`  NN`       
+ (NNN_JNNNN` (NNN__NNNNF`               (NF      `NNNN__NNNN`    4NNNL_JNNNF   (NN_NNNNN)N
+  4NNNNNF`   `NNNNNNNF`                 4N`       `NNNNNNF`       4NNNNNN"     NNNNNNNN" N
+
+
+
+             @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+             @###########################################################@
+             @#                                                         #@
+             @#                      C D - T O O L                      #@
+             @#                                                         #@
+             @#  F R E Q U E N T L Y    A S K E D    Q U E S T I O N S  #@
+             @#                                                         #@
+             @###########################################################@
+             @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+INTRODUCTION
+------------
+
+§ Do I have to know something really specific to read this FAQ ?
+§ What is this tool aimed at?
+§ What is an ISO image by the way?
+§ Are all ISO formats handled?
+§ Is Nero's file format supported?
+§ Why? Nero is a wide-spread software!
+§ What is this tool/library able to do?
+§ I have heard CDmage or ECCRegen can also correct the sectors for me.
+§ So, what is the goal of this software?
+
+
+RUNNING CD-TOOL
+---------------
+
+§ Well... er... How do I run cd-tool ?
+§ Is there something elese I should know when using the 'cd-tool' command ?
+§ I found a bug in your software. What should I do ?
+
+
+LEGAL INFORMATION ABOUT THE CODE
+--------------------------------
+
+§ Where does the source code for the CRC/ECC comes from?
+§ Do you have the right to do so?
+§ What a strange name, 'yazedc'
+§ So, I can modify your code too, create a new tool, and diffuse it?
+
+
+STRUCTURE OF A CD-ROM
+---------------------
+§ With which information did you write this software ?
+§ So, what is exactly the format of a CD-Rom?
+	- Books
+	- General information about a CD sector
+		* sync bytes
+		* localisation
+		* mode byte
+		* subheader
+		* CN Byte
+		* CI Byte
+
+
+INFORMATION ABOUT LUA API
+-------------------------
+
+§ What is with all this LUA stuff?
+§ What is your LUA API?
+	- Basic layer
+	- Objects and Files
+	- Handles
+	- CD Specific Classes
+                * cdutils
+		* Direntry
+		* cdfile
+	- ISO reconstruction
+		* cddate
+		* PVD
+		* DirTree
+		* isobuilder
+		* Extra isobuilder methods
+	- Example
+§ Tell me more about the 'interactive' Option, please.
+§ What patch did you apply to the LUA compiler?
+
+
+LIST OF OBJECTS, FUNCTIONS, ETC. DESCRIBED IN THIS FAQ
+------------------------------------------------------
+
+
+CREDITS
+-------
+
+
+
+
+%%%%%%%%%%%%%%%%%%
+%                %
+%  INTRODUCTION  %
+%                %
+%%%%%%%%%%%%%%%%%%
+
+
+Q:Do I have to know something really specific to read this FAQ ?
+A:It should be better for you to know about LUA and how to handle it.
+
+
+Q: What is this tool aimed at?
+A: It is designed to handle ISO images you make from CDs.
+
+
+Q: What is an ISO image by the way?
+A: You can create an ISO with free tools like cdrdao in raw mode, or others,
+   like cdrwin, CloneCD, etc...
+
+
+Q: Are all ISO formats handled?
+A: No. Only raw-2532 images files. Always the file format outputted by CloneCD
+   and cdrwin, and the format outputted by cdrdao with the --read-raw option.
+
+
+Q: Is Nero's file format supported?
+A: No.
+
+
+Q: Why? Nero is a wide-spread software!
+A: It is a commercial tool. Since I do not use any commercial tool, and that no
+   GPL software generates Nero ISO, it will not be supported.
+
+
+Q: What is this tool/library able to do?
+A: First, you can read/write sectors from/to an ISO file. You can also read
+   information about an ISO file. You can extract/insert files from/to
+   an ISO file. Depending upon the mode you will be using, it will compute
+   the right CRC/ECC code for the given sector. Everything I just said can be
+   done in the following (eventually mixed) modes: MODE_1, MODE_2, MODE_2_FORM_1,
+   MODE_2_FORM_2. Additionnaly, it is able to produce patches (.ppf files)
+   instead of modifying the ISO file, saving you time when you use the right 
+   softwares. Actually, it is quite "oriented" on the MODE_2* formats, since it 
+   is the PSX's format. And now, it is able to interpret LUA scripts.
+
+
+Q: I have heard CDmage or ECCRegen can also correct the sectors for me.
+A: Maybe. Since they only run on Win32 platforms, I have never tried them.
+
+
+Q: So, what is the goal of this software?
+A: To modify (patch) ISO images. Nothing else. And of course I want it free,
+   opensource, and working on my prefered operating system, Linux. I can
+   actually compile it for windows, using the mingw32 system (the same you
+   can find in DevC++)
+
+
+
+%%%%%%%%%%%%%%%%%%%%%
+%                   %
+%  RUNNING CD-TOOL  %
+%                   %
+%%%%%%%%%%%%%%%%%%%%%
+
+Q: Well... er... How do I run cd-tool ?
+A: This software is command-line based. So, you have to use it this way
+   (open a Dos window when using Windows) :
+
+       cd-tool [options] [lua-script1] [lua-script2] ...
+
+   Options:
+    -v       for verbose mode.
+    -f <iso> to load an initial iso file (object cdutil).
+    -w       to open the previous iso file in write mode.
+    -o <iso> to start creating an output iso (object iso).
+    -a <paq> to load an additionnal archive file.
+    -c <out> to dump the compiled byte code to file.
+    -d       to enable debug mode (ie, do not strip)
+    -i       to start interactive mode.
+    -l       to turn off the exec on end line.
+    -e <cmd> to execute this single command in LUA.
+    -b       to force the use of the built-in cd-tool.lua
+    -p       to run a CD device probe.
+    -h       for a help page.
+
+
+Q: Is there something elese I should know when using the 'cd-tool' command ?
+A: Yes... Actually, it seems important to me that you know that : when starting,
+   cd-tool will automatically load the "cd-tool.lua" file. If it cannot find it, 
+   it will load the built-in copy instead. You should know that this file contains
+   lots of useful functions that will speed up your work.
+
+   So, I advise you to read the "cd-tool.lua" file in order for you to :
+   -> have other LUA-coding examples
+   -> know the list of the functions contained in this file
+   -> write (and, if you feel like it, send me ;)) new functions
+
+
+Q: I found a bug in your software. What should I do ?
+A: Please report it to me, using my email address : pixel@nobis-crew.org
+   But, please, send me a versatile bug report. Don't waste my time with "It hung
+   up" or "it doesn't work". In order for me to be able to process a bug, I need to
+   fully know the context in which this bug occurs, so, don't hesitate to send me
+   all the infos you can. Moreover, if you can reproduce this bug, please provide me
+   a lua source code that hits the bug.
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                    %
+%  LEGAL INFORMATION ABOUT THE CODE  %
+%                                    %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Q: Where does the source code for the CRC/ECC comes from?
+A: Originally, it has been taken from cdrdao. Yazoo has given some
+   modifications to it. Then I have cleaned it up and made some minor
+   modifications on my self. The source code was called 'yazedc'.
+
+
+Q: Do you have the right to do so?
+A: The software is GPL'ed. I have got the right to give modified versions
+   of it, as long as I do not claim the modificated thing is the original,
+   and as long as I mention the original authors in it.
+
+
+Q: What a strange name, 'yazedc' ?
+A: I have got my own ideas about the name's origin... The easy solution:
+   "YAZoo EDC", where EDC is the field name of one of the things it will
+   recompute. But there is a more... complicated solutions I will not give.
+
+
+Q: So, I can modify your code too, create a new tool, and diffuse it?
+A: Yes, as long as you give me back your changes if I ask them, that the
+   new software is also GPL'ed, and that you mantion me as the original
+   writer of the software, you can. Read the GPL carefully, it is very
+   interesting and instructing.
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                         %
+%  STRUCTURE OF A CD-ROM  %
+%                         %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Q: With which information did you write this software ?
+A: Firstly, when you have a raw sector, you have to understand its primary form.
+   Secondly, the whole CD has an internal format, called the ISO9660. The format
+   of the ISO9660 is easy to find on the internet. Here is one first easy link:
+       http://www.ccs.neu.edu/home/bchafy/cdb/info/iso9660.txt
+   Then you have two more difficult documents:
+       http://www.ecma.ch/ecma1/stand/ecma-119.htm
+   and
+       http://www.ecma.ch/ecma1/stand/ecma-130.htm
+   
+   All those links were taken from the page
+       http://www.ccs.neu.edu/home/bchafy/cdb/info/info.html
+
+Q: So, what is exactly the format of a CD-Rom?
+A: The sector format is a bit complicated to find on the internet. Here is what
+   I have found.
+
+
+---------
+- BOOKS -
+---------
+
+   First you have to know that there are many formats that describe the sector's
+   organisation. Those are called "Books". There is the Red Book, the Yellow
+   Book, the Blue Book, the Green Book, the Orange Book, and the White Book.
+
+   The Red Book is for Audio CD. The Yellow for common CD-Roms. The Blue book
+   for Philips's VideoCD. The Green Book for CD-i and CD-XA. The Orange Book
+   for CD-R cds. And the White Book seems to be a replacement of the Green one.
+   
+   This is quite unclear and you have to actually buy the books since they
+   are not in public domain.
+   
+   So the information I will give comes from various source of various free
+   softwares. Should I mention two: cdrdao http://cdrdao.sourceforge.net
+   and ECCRegen http://web.tiscali.it/eccregen as the most useful sources.
+
+
+-----------------------------------------
+- GENERAL INFORMATION ABOUT A CD SECTOR -
+-----------------------------------------
+
+   Here is the general form of a CD-Rom sector:
+   
+ <--------------------------- sector: 2352 bytes ------------------------------>
+ <- Header: 16 bytes -><---------------- Datas: 2336 bytes -------------------->
+
+   Let us move to the header description:
+   
+ <--------------------------- header: 16 bytes ------------------------------>
+ <-- sync bytes: 12 bytes --><-- localisation: 3 bytes --><-- mode: 1 byte -->
+
+
+** SYNC BITES **
+
+   The sync bytes are easy: it is always 00 FF FF FF FF FF FF FF FF FF FF 00
+   They are supposed to help the CD reader to synchronize enough to be able to
+   read the sector correctly.
+
+
+** LOCALISATION **
+
+   The localisation is the sector "position" described in time. For example,
+   the sector 200000 of a CD is at the "time" 44:28:50. The first is the number
+   of minutes, the second is the number of seconds, in the range 0-59 and the
+   last is the frame number, in the range 0-74. It means there is 75 frames
+   into a second for a CD player. Please note that the CD "begins" at 00:02:00.
+   
+   Ok now that we know all this, you can feel the way the localisation is
+   stored. But it is not that easy...
+   
+ <-------------------- localisation: 3 bytes -------------------->
+ <-- minute: 1 byte --><-- second: 1 byte --><-- frame: 1 byte -->
+
+   That seems to be all right *BUT* the fact is that the bytes are stored
+   in packed BCD format. You may know what the BCD format is if you are "old"
+   enough for that. I will not enter into the details so if you want a more detailed
+   description of the BCD format, look into the net. You only have to know that:
+
+typedef unsigned char uchar;
+uchar from_BCD(uchar x) {return ((x & 15) + ((x & 240) >> 4) * 10));}
+uchar to_BCD(uchar x) {return ((x / 10) << 4) | (x % 10));}
+int is_valid_BCD(uchar x) {return (((x & 15) < 10) && ((x >> 4) < 10));}
+
+   Last hint: when you look at a BCD packed number, you have to read it in
+   hexadecimal, and then you will see a "decimal" number. So when you count
+   in BCD, you will have this: 0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07,
+   0x08, 0x09, 0x10, 0x11, 0x12, etc... You see? You have got a "gap": no 0x0a,
+   0x0b, 0x0c, etc... So the BCD is only a trick for an easy reading of hexa
+   dumps of various information.
+
+
+** MODE BYTE **
+
+   All right. This was for the localisation part. The last part is the mode
+   byte. It is really simple actually. It is 0 for an empty sector, 1 for a
+   sector in MODE1, and 2 for a sector in MODE2. Easy as hell.
+   
+   Ok here we are: we know the basic form of a CD sector, and even know the
+   MODE of the sector. Now the data depend upon the sector mode. Here you have
+   the various kinds:
+   
+ <-------------- MODE 1 FORM 1 Sector data: 2336 bytes ---------------------->
+ <- data: 2048 bytes -><- EDC: 4 bytes -><- 0s: 8 bytes -><- ECC: 276 bytes ->
+ 
+ <---------- MODE 1 FORM 2 and also MODE 2 Sector data: 2336 bytes ---------->
+ <----------------------------- data: 2336 bytes ---------------------------->
+
+ <-------------- MODE 2 FORM 1 Sector data: 2336 bytes ---------------------->
+ <- SH: 8 bytes -><- data: 2048 bytes -><- EDC: 4 bytes -><- ECC: 276 bytes ->
+
+ <-------------- MODE 2 FORM 2 Sector data: 2336 bytes ---------------------->
+ <- SH: 8 bytes -><---------- data: 2324 bytes ----------><- spare: 4 bytes ->
+
+   Well, I *really* do not know how to distinguish the different "FORMS" from
+   each others for the MODE 1. Have to look further about this.
+   
+   The ECC and EDC are control blocks. The yazedc code can compute them, so
+   do not worry about them.
+
+
+** SUBHEADER **
+
+   The 'SH' (SubHeader) field is the most "complicated" one. Those eight little
+   bits are the only one I am really not sure of. All of that because you have to
+   buy the Books to find the information. This SubHeader is only found into
+   MODE_2_FORM_1 and MODE_2_FORM_2 sectors.
+   
+   Here you have the information I have been able to gather:
+   
+   -) The SubHeader has 8 bytes, but it is twice the same 4 bytes.
+   -) The 4 bytes are described using the following fields:
+     o) 1st byte: File Number (FN)
+     o) 2nd byte: Channel Number (CN)
+     o) 3rd byte: Sub Mode (SM)
+     o) 4rth byte: Coding Info (CI)
+   -) The SubHeader seems to be very important when dealing with STR files,
+      since it is the only way to distinguish a video sector from an audio
+      sector. But it seems that it does not matter when dealing with normal
+      files. It might be obvious since the ISO9660 format does not care about
+      those bits. But better try to patch them if necessary...
+   -) The Sub Mode byte is a bit field which seems to be described like this:
+       0: End of Record (EOR)
+       1: Video
+       2: Audio
+       3: Data
+       4: Trigger
+       5: Form 2
+       6: Real Time (RT)
+       7: End of File (EOF)
+
+   Of course, PSX CD's are recorded in MODE 2... So common files are
+   stored in MODE 2 FORM 1, STR/XA files are stored in "MODE 2" but
+   actually they are in MODE 2 FORM 1 and 2. The MOVCONV tool will in fact
+   produce files that contain the subheaders.
+   
+   Those subheaders are very likely to vary, and seem to be very important for
+   stream processing. Please note that "str" video sectors are considered as
+   data sectors, and not as video sectors.
+
+
+** CN BYTE **
+
+   The CN byte indicates the channel number of the current sector. The XA
+   format may contain interlaced channels. So for example, if you have a
+   file that contains 8 channels, you will have first the first sector
+   of the channel 0, then the first sector of the channel 1, etc...
+   
+   This is also a bit more difficult when you know that video is also
+   interlaced and considered as a channel itself. The common interlacement
+   is 7 video sectors for 1 audio sector, but this may vary. And all the
+   channels may be completely independant. For example, you may have a
+   sound-free video that contains an audio channel, this audio channel
+   may be used for another part in the game.
+   
+   This is to optimize the reading process. Since the cd reader is a 2x cd
+   reader, it *HAS* to read data in full 300KBps. So, if you have a sound
+   free video, the reading process will be faster than the decoding process,
+   and everything should crash. This is about the same for the audio sectors.
+   The 'leap' sector function of MOVCONV adds blank sectors in order to
+   pad the channels that may have stopped before the others. 
+   
+   One "speed" of the CD reader corresponds to four times the playback speed
+   of a stereo audio channel at 37800Hz. So at full speed you can have eight
+   stereo audio channels at 37800Hz. Or you can have 32 mono audio channels
+   at 18900Hz.
+   
+   Common video str files need 7/8 of the full speed of the CD reader.
+   "Common" means 320x224 videos at 15fps. So you can have a full movie
+   in 320x224x15fps with a stereo sound track at 37800hz. So, now, you
+   may understand why the common interlacement may vary.
+
+
+** CI BYTE **
+   
+   The CI byte contain some flags about the current sector, but I am
+   yet unable to give a full description of them. I have only got this: for
+   XA audio sectors, the bit 0 is set when you have stereo sound, and the bit
+   2 is set when you have "half frequency", ie 18900Hz instead of 37800Hz.
+   
+   The Video frames are in plain Form 1, and the Audio frames are in plain
+   Form 2. But it _seems_ the Video frames are not checked against ECC/EDC,
+   and filled with zeroes instead.
+   
+   Last but not least: MODE 2 FORM 1 and MODE 2 FORM 2 are also called 
+   XA-Mode1 and XA-Mode2 or simplier: XA-1 and XA-2.
+
+   I hope this will help you as it helped me writing this software.
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                             %
+%  INFORMATION ABOUT LUA API  %
+%                             %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+Q: What is with all this LUA stuff?
+A: LUA is a scripting language. Here, in cd-tool, it enables you to create
+   custom patches, or evoluted "mini softwares". If you want to use it, you
+   first have to learn how LUA works and how you can program it. Look at the
+   official web site for more information about this language: www.lua.org
+   Please, do not bug me about LUA syntax. The huge load of documentation
+   about this language should be really enough.
+
+
+Q: What is your LUA API?
+A: First of all, my LUA distribution is the 5.0, slightly modified. The basic
+   LUA compiler is not able to understand hex or octal numbers. I made a patch
+   of my own to add this support. You will find this patch at the very end of
+   this document.
+
+
+---------------
+- BASIC LAYER -
+---------------
+
+   Now, for the API itself. As basic layer, there are some functions that you
+   will surely need. Those are "andB", "orB", "xorB", "notB", "shr" and "shl".
+   The "and", "or", "xor" and "not" are there because there is no binary 
+   equivalent of those functions into native LUA. The two others, "shr" and "shl",
+   are respectively "shift right" and "shift left". All the functions work
+   internally using 32 bits unsigned integers.
+   
+   There is a little 'debug' function that can help: "hex". Its syntax is:
+   
+       hex(number[, format])
+   
+   Where "format" is a string, which is "%02x" by default. This function
+   simply returns the formatted string from the C call printf(format, number)
+   So, you can actually mess up with the format, and display something else
+   than plain hexa. And even cause the C host to crash, if you put an
+   incorrect format string.
+
+
+   When needed, you can use this function (very useful, heh) :
+
+       load([script])
+
+   will load a LUA script where script can be a handle (see below),
+   or a filename, which defaults to "cd-tool.lua".
+   
+
+   You also have a "print" function, which takes a string as argument. Its
+   display form is platform-independant (a new line is automatically added)
+   but for this actual version of CD-Tool, will only be displayed on verbose
+   mode (option -v in the command line)
+   
+   
+   Ho, I almost forgot. CD-Tool opens the following LUA libraries before
+   running any script:
+   
+       base, math, string, table
+   
+   Please read the LUA manual about those libraries. (Note that the "print"
+   function of the "base" library is not here, and is replaced with mine)
+
+
+---------------------
+- OBJECTS AND FILES -
+---------------------
+
+   Let us talk about objects now. My API supports two kind of objects : objects
+   created from within LUA, and objects exported from the C++. Usually, the
+   objects created by LUA will be destroyable. It means they have a garbage
+   collector metamethod, and also a ":destroy()" method, to forcibly destroy
+   the object. The objects exported by the C++ code will NOT be destroyable,
+   and any try to call the :destroy() method will just fail.
+   
+   Now, about files. My API supports three "kinds" of files. Input files,
+   Output files, and Buffers. Each of them have exactly the same API. The
+   The Buffer one has one more feature that I will discuss below. But first,
+   here are the constructors.
+   
+       Input(filename)
+       Output(filename)
+       Buffer([seekable])
+   
+   The variable 'filename' is a string, and 'seekable', a boolean. All those
+   three functions will return what I call a "handle". Several functions of
+   the API will take those handles as arguments. The variable 'seekable' is
+   false by default. A non-seekable buffer is a "FIFO". You will not be able 
+   to seek through it. But it will take less memory than a seekable one.
+   'Output' will always create an empty file, erasing any existing one.
+
+
+-----------
+- HANDLES -
+-----------
+   
+   Now, what you can do with handles. Well, here you have all the "methods"
+   you can call on these handles:
+   
+       :read()
+   
+   With no arguments, this method will read a string from the file, up to the
+   end of the line (or the file) and will eventually remove the end of line
+   marker (LF or CRLF, autodetected)
+   
+       :read(size)
+   
+   Will read "size" bytes from the handle, will put them in an array, and
+   return this array. Beware: usually, LUA coders consider arrays starting
+   from 1. Mine start from 0. This function will return how much bytes were
+   actually read from the handle. Beware: if it hits the end of the file, it
+   will return 0, and will automatically close the handle.
+   
+       :readU8()  :readU16()   :readU32()
+   
+   Will read a 8, 16 or 32 bits unsigned number, and return it.
+   Always Little Endian.
+   
+       :write(string)
+   
+   Will write the string to the handle. Will return nothing.
+   
+       :write(size, array)
+   
+   Will write the "size" bytes to the handle, taken inside of "array".
+   Remember: 0-started arrays huh? Will return the number of bytes
+   actually written on the file. Should not be useful, except for detecting
+   a "disk full" error.
+   
+       :writeU8(byte)  :writeU16(word)  :writeU32(dword)
+   
+   Will write a 8, 16 or 32 bits unsigned number.
+   Always Little Endian.
+   
+       :copyfrom(handle[, size])
+   
+   Will read up to 'size' bytes from the given handle, and put them inside
+   of the calling handle. If not present, size will be "-1", which means
+   "up to the end". The 'source' handle will then be closed (since it hits
+   the end of file)
+   
+       :copyto(handle[, size])
+   
+   This is just the contrary of the function above. And to conciliate minds,
+   I also have the following global function:
+   
+       copyhandle(source, destination[, size])
+   
+   which has still the same meaning than above.
+   
+   Now for some booleans methods:
+   
+       :isclosed()  :canread()  :canwrite()  :canseek()
+   
+   Should be self explanatory.
+   
+       :tell()
+   
+   Will return the actual file position pointer, or if the handle is non
+   seekable, will just return a counter of the number of bytes read so far.
+   
+       :getname()
+   
+   Will return a string containing the name of the handle. May be the filename,
+   if the called object is an Input or Output handle. Otherwise, will just be
+   the string "Fifo" or "Buffer", depending on the seekability of the Buffer.
+   
+       :getsize()
+   
+   Will return the handle size in bytes. If it is a Fifo, it will return the
+   number of remaining bytes.
+   
+       :close()
+   
+   Will close the file, and flush the remaining data in caches.
+   
+       :flush()
+   
+   Will only flush any data remaining in caches.
+   
+       :seek(pos[, wheel])
+   
+   Will seek the file pointer at position "pos". The "wheel" argument is here 
+   to tell from which point of view "pos" should be seen. By default, "wheel"
+   is SEEK_SET, which tells that "pos" refers to the start of the file.
+   But you can also have SEEK_CUR, which says that "pos" refers to the
+   actual file pointer. And SEEK_END, which will then make "pos" to be seen
+   as a relative position from the end of the file. Thus, having a negative
+   value for "pos" is completely legal. It will return the actual file pointer.
+   
+      :setz([level])
+   
+   Will enable the zlib against the handle, at the specified level, from 0 (no
+   compression) to 9 (max compression). The argument 'level' is 9 by default.
+   Having a level for an Input handle has no meaning. Having :setz() against
+   a Buffer will simply fail. When a handle is :setz(), any further read or
+   write will be transparantly made through the zlib. Thus, if you open an
+   Output file, and immediately specify a :setz() on it, it will produce a
+   .gz file, that you can decompress using a lot of well known decompressing
+   softwares.
+   
+   
+   Now for special features about seekable buffers. First, since they have two
+   file pointers, the common ":tell()" and ":seek()" will work for the reading
+   pointer. So I had to add the methods ":wtell()" and ":wseek()" that will
+   work with the writing pointer.
+   
+   Moreover, you can access a seekable buffer as an array, starting from 0.
+
+
+-----------------------
+- CD SPECIFIC CLASSES -
+-----------------------
+
+   That is all for basic files. Let us move out to CD specific objects. Here are
+   the basic "types" we will work with:
+   
+     cdutils, direntry, cdfile, cddate, PVD, DirTree, and isobuilder.
+
+
+** CDUTILS **
+
+   Let us discuss them now. A "cdutils" is usually created from "cd-tool", and
+   passed to the LUA script as the "cdutil" variable. This object holds the
+   power to read, and to write to the ISO file, or the CD device that the user
+   specified as argument. Of course, if the user specified a device, you will
+   not be able to write to it. The LUA code can not create a "cdutils" object.
+   Coming with the "cdutils" object are some global variables. These are:
+   
+       MODE0 = 0, MODE1 = 1, MODE2 = 2,
+       MODE2_FORM1 = 3, MODE2_FORM2 = 4,
+       MODE_RAW = 5, GUESS = 6
+   
+   They should be used each time a "mode" is needed as a sector mode argument.
+   Many methods of 'cdutils' will ask an optionnal "mode" argument, and will
+   default to "GUESS" if not specified.
+   
+   You can also access these three helpers arrays:
+   
+       sec_sizes, an array of sector sizes, depending on the mode
+       sec_offsts, an array of the actual start point of the sector inside
+          the raw sector, and
+       sec_modes, an array of strings that describes the sector modes.
+   
+  Last but not least, it comes with these functions:
+
+       swapword(number)  swaps endianness of given 16 bits number
+       swapdword(number) swaps endianness of given 32 bits number
+
+       from_bcd(number)     converts byte from BCD notation
+       to_bcd(number)       converts byte to BCD notation
+       is_valid_bcd(number) returns a boolean
+   
+       from_msf(msf[, start)
+       from_msf(m, s, f[, start])
+           converts a MSF sector address into a plain sector number.
+           By default, "start" is 150 (a CD usually starts at 0:02:00,
+           which is 150 sectors)
+
+       to_msf(sector[, start])
+           converts a plain sector number into a MSF sector address. 
+           By default, "start" is at 150. The function will actually 
+           return 4 numbers, as in: (msf, m, s, f) = to_msf(sector)
+
+
+   The methods of the "cdutils" object are:
+   
+       :sectorseek(sector)
+   
+   Will seek the current reading pointer to the specified sector number. Many
+   methods of cdutils will ask an optionnal "sector" argument, and will use
+   the current reading pointer if not specified.
+
+       :guessmode([sector])
+   
+   Will return the guessed mode for the specified sector.
+   
+       :readsector([sector[, mode]])
+   
+   Will return an array containing the user data for the specified sector.
+   It means that, if "mode" is different of MODE_RAW, only the user part
+   of the sector will be returned.
+   
+       :readdata(size[, sector[, mode]])
+   
+   Will return an array containing the user data for the sectors starting at
+   "sector", by only reading the user data specified by the "mode".
+   
+       :readfile(handle, size[, sector[, mode]])
+   
+   Will basically do the same, but will write down the data to the specified
+   handle. Will return nothing.
+   
+       :writesector(array[, sector[, mode]])
+   
+   Will write the array inside the specified sector, using the specified mode.
+   That is, it will only write inside the user's data of the specified sector.
+   
+       :writedata(array, size[, sector[, mode]])
+   
+   Will write "size" bytes from the array inside the sectors starting at
+   'sector', writing only inside the user's data parts.
+   
+       :writefile(handle[, size[, sector[, mode]])
+   
+   Will basically do the same, but will read from the specified handle, up
+   to its end if size equals -1 (default)
+   
+       :updatesize(path, newsize)  and  :updatesector(path, newsector)
+
+   Will update the direntry associated to the given path accordingly to its 
+   argument. Warning: no sanity checks are done. You can easily crush the 
+   filesystem if you are not paying attention.
+
+       :createsector(mode, sector)
+
+   Will create a blank sector of given mode and address. This can either be 
+   used to blank one existing sector of the cd, or to add new sectors at the end
+   of the cd but this is a depreciated action: if you have to enlarge an iso file,
+   you are encouraged to create a completely new iso, by using the isobuilder
+   class described below.
+
+
+** DIRENTRY **
+
+   Now, the following methods will return a "direntry" object. I will discuss
+   them shortly after.
+   
+       :findpath(path)  :findparent(path)  :finddirectory(dir, path)
+   
+   For the three functions, the "path" is a string. For the definition of a
+   path, it can be a directory name, or a filename. It is absolute if it
+   starts with a "/". Each sub-directory is separated by a "/". Beware: usual
+   ISO9660 filenames end with the string ";1" and the functions are case
+   sensitive.
+   
+   So, ":findpath" and ":findparent" will look for the directory entry of the
+   exact path, or the parent containing the path specified in argument. They
+   will return a "direntry", which is a kind of "dump" of the ISO structure
+   that corresponds to this entry in the file table. The last function,
+   ":finddirectory()", will look inside of the directory specified as argument
+   for the relative (unique) filename (that can be either a file, or another
+   directory). Beware: if the specified direntry points to a file, and not
+   to a directory, it will fail.
+
+   So, what is a "direntry" object ? It is a destroyable read-only object
+   returned by these three functions (:findpath  :findparent  :finddirectory
+   that we've just discussed about), that contains the infos from the
+   directory entry corresponding to a specific path (a file or a directory)
+   
+   You can read a direntry object as an array, which has the following
+   entries:
+   
+        R           number - entry size
+	NExt        number - "Number of Extensions"
+	Sector      number - entry sector on CD
+	Size        number - entry size on CD
+	Year        number - date & time
+	Month       number - date & time
+	Day         number - date & time
+	Hour        number - date & time
+	Minute      number - date & time
+	Second      number - date & time
+	Offset      number - date & time
+	Flags       number - entry flags (see an ISO9660 doc)
+	HandleUnit  number - should be 0
+	HandleGap   number - should be 0
+	VolSeq      number - should be 0
+	N           number - name size 
+	id          string - name
+	
+   Moreover, it has the following boolean methods that can query a direntry:
+   
+       :ishidden()  :isdir()
+           Will query the Flag entry. There are other entries, but I do not
+           think they are useful.
+           
+       :hasxa()
+           Will compute if a Sony's XA special entry exists.
+       
+       :isxadir()  :isxaaudio()  :isxastr()  :isxaxa()  :isxaform1()
+           If the direntry has an xa entry, this will query it.
+
+
+** CDFILE **
+
+    Now for a quite interesting object. It is the "cdfile" object. It is a
+    derivate of the "handle" generic object, and thus, will have exactly the
+    same behavior as an "Input" object. The big thing is that this file comes
+    from inside the ISO file directly, with intelligent sector reading (read:
+    it will extract correctly STR files)
+    
+    So, if you remember all the methods of a handle object, I only have to
+    tell you how to construct a cdfile object. There are two constructors
+    that are actually two extra methods in the class cdutils:
+    
+        :cdfile(direntry[, mode])
+        :cdfile(sector[, size[, mode]])
+    
+    The first one is obvious. It will simply clone the given direntry object
+    into a readable handle.
+    
+    The second one is a little bit more tricky. You specify a sector number, and
+    a filesize. But by default, size is -1, which means "autodetect". Yeah, I
+    know this may sound strange, but, on mode 2 CDs, there are sector flags
+    that help delimiting files entries. And since the "tricks" used in games
+    like Xenogears or Chrono Cross are only directory hiding, those flags were
+    constructed, and are still here. So, the autodetection will try to find
+    the correct file size using these flags. Beware, it may fail, and it will
+    not work at all on mode 1 CDs.
+
+
+----------------------
+- ISO RECONSTRUCTION -
+----------------------
+    
+    Okay, I discussed a lot about ISO readings, and small patching. Now for
+    the real thing: ISO reconstruction.
+
+
+** CDDATE **
+
+    First, I have to introduce three structures used actively by the functions.
+    The first is the "cddate" structure. It holds any data necessary to set up
+    a date for various places in the ISO structure. You can read/write the
+    fields of a cddate. All of them are numbers, and should be self-explanatory:
+    
+        year, month, day, hour, minute, second, hundredths, offset
+    
+    The function "cddate" will return an empty destroyable cddate.
+
+
+** PVD **
+
+    The second structure I have to introduce is the "PVD" structure, which
+    stands for "Primary Volume Descriptor". It is the basic data that every
+    CD has. As the cddate structure, you can access the PVD structure as an
+    array, which fields are:
+    
+        sysid      string - system ID
+        volid      string - volume ID
+        volsetid   string - volume set ID
+        pubid      string - publisher ID
+        prepid     string - data preparer ID
+        appid      string - application ID
+        copyright  string - copyright file
+        abstract   string - abstract file
+        biblio     string - bibliography file
+        volcreat   date   - volume creation date
+        modif      date   - volume modification date
+        volexp     date   - volume expiration date
+        voleff     data   - effective volume date
+    
+    The last field, "appdata", is hidden. It is a 512 bytes array which
+    contains "application data", usually zeroes. You can access these bytes
+    directly by using numbers as indices of a PVD structure. Starting from 0.
+    SONY usually puts data in there, so...
+    
+    In order to create a PVD structure, you have several ways. You can create
+    an empty PDV using the "PVD" function. But there are also three functions
+    that will clone an existing PVD. Those are:
+    
+        createpvd(cdutils)  createpvd_handle(handle)  createpvd_array(array)
+    
+    The cdutils one will automatically look for the sector 16 of the input ISO
+    in order to clone it. The two others will just expect 2048 bytes of data
+    that contain the user data of a PVD sector.
+
+
+** DIRTREE **
+
+    The last useful structure is the "DirTree" structure. It is used for
+    building the ISO directory structure. When finalizing the ISO file, these
+    structures will be dumped as "direntries". So they mostly have the same
+    fields and meanings.
+    
+    LUA code should not construct DirTrees directly. It is possible though,
+    through the "DirTree" function. Here is the syntax:
+    
+        DirTree(father[, isdir])
+    
+    The "father" argument should be the other DirTree which is the parent of
+    the new one, or "nil" to create a root directory (*really* not recommanded 
+    in my humble opinion. I really do not see why you would do that. Apart from
+    creating a fake rootsystem, which is doable, but not tested though, and
+    was not designed for it (yet)), The "isdir" argument is a boolean, which
+    defaults to true. You *have* to set it to false in order to create a plain
+    file.
+    
+    Next, the fields of this objects are:
+    
+        isdir     boolean - read only attribute
+        sector    number  - entry sector index
+        size      number  - entry size
+        hidden    boolean - sets the hidden entry flag
+        hardhide  boolean - a trick. see below.
+        name      string  - entry name.
+        creation  date    - entry creation date
+        have_xa   boolean - has a sony's xa entry
+        xa_dir    boolean - flag "is directory"
+        xa_audio  boolean - flag "is audio track"
+        xa_str    boolean - flag "is str video file"
+        xa_xa     boolean - flag "is xa audio file"
+        xa_form1  boolean - flag "is in mode 2 form 1"
+        mode      number  - direntry sector mode
+            beware: this "mode" entry is to tell how to store the direntry,
+            not the file pointing to it.
+
+        father, child, brother are read-only entries. They are non destroyable
+        DirTrees and are used to browse the actual directory tree.
+    
+    The "hardhide" attribute is to tell the system "not to dump" the entry
+    when finalizing the CD. Useful for "hidden" filesystems, like Xenogears.
+    
+    And finally, the methods for this object:
+    
+        :fromdir(direntry)
+    
+    This will copy the directory entry into the called DirTree, except the
+    sector and size attributes.
+    
+        :setbasicsxa()
+    
+    Will set the basic XA attribute. dir:setbasicsxa() is equivalent to the
+    following piece of code:
+    
+        dir.have_xa = true
+        dir.xa_form1 = true
+        dir.xa_xa = false
+        dir.xa_str = false
+        dir.xa_audio = false
+        dir.xa_dir = dir.isdir
+    
+
+** ISOBUILDER **
+
+    Phew, only one object remaining. Here it is. Its name is "isobuilder".
+    It will control and administrate the creation process of an ISO file
+    by using all of the above structures and functions.
+    
+    You can create one from LUA, but CD-Tool might just give one to your
+    script, with the global name "iso". The constructor has the following
+    syntax:
+    
+        isobuilder(handle[, mode])
+    
+    This will return an isobuilder object, that will write everything out to
+    the specified file, and will create a 2352-raw ISO using the given sector
+    mode (mode 2 form 1 by default). Actually, it would be nonsense to put
+    something else than "MODE1" or "MODE2_FORM1" as 'mode' here.
+    
+    I have to explain a bit how this isobuilder object works. You will be able
+    to "append" data, and retain the sector numbers where the data were
+    stored inside the DirTree structures. So, when you are done with putting
+    your files, the isobuilder object will create all the necessary structures
+    all around the CD, where it spared some space.
+    
+    This object has the following methods:
+    
+        :foreword(cdutils)
+        :foreword_handle(handle[, mode])
+        :foreword_array(array[, mode])
+    
+    This will create what I call the "forewords" of the CD, i.e. the 16 first
+    sectors. The "cdutils" version will automatically take the 16 sectors
+    from the input ISO. The two others will read the 16 sectors from the
+    data you give it, using the specified mode, which defaults to 2352 bytes
+    per sector, that is, exactly 37632 bytes.
+    
+    Next to it, you have the method
+    
+        :setbasics(pvd[, rootsize[, ptsize[, nvd[, rootsect]]]])
+    
+    this will create the first structures, and return the root DirTree of your
+    new ISO. By default, rootsize = 1, ptsize = 1, nvd = 1, and rootsect = -1.
+    
+    Please retain the "rootsize" in memory a little bit, we will discuss it
+    right after. "ptsize" is the size of the path table, in sectors. Note that
+    there are 3 copies of the path table. So, in reality, this number will be
+    multiplicated by 4. NVD is the number of volume descriptors. We currently
+    set the "Primary" volume descriptor, and the end marker, at respectively
+    sector 16 and 17. So, if you want more volume descriptors, you should set
+    this variable to another value, and then start writing your custom volume
+    descriptors at sector 17. Do not forget the end marker, it will always be
+    put at the sector 17, even if you have several volume descriptors. And
+    finally, the rootsect is the sector of the rootdirectory, if you want to
+    place it at a certain sector, and thus, reserving some sectors between
+    the path table and the rootsector. Note that the default value, -1, just
+    tells to compute it.
+    
+        :createdir(dirtree, name[, size[, direntry[, mode]]])
+    
+    This will create a sub-directory in the specified dirtree object. Size is
+    defaulted to 1, direntry to 'nil', and mode to -1. When creating a directory
+    the isobuilder will hold one or more sectors for it in the ISO file. You
+    cannot really tell by advance how much sectors you need however. But since
+    you are creating patches, you should know how much you actually need. So,
+    you have to tell how much sectors you reserve for the directory. This is
+    also true for the root, and thus, the "rootsize" in the :setbasics()
+    method tells the size of the root directory, in sectors. The direntry
+    object, when it exists, will help to clone the entry. If "name" is empty,
+    it will also get cloned. If "size" is 0, it will also get cloned. And
+    finally, if "mode" is different from -1, the directory will be stored
+    using this mode. Otherwise, the mode is the default ISO mode specified
+    in the isobuilder object creation.
+    
+        :createfile(dirtree, name, file[, direntry[, mode]])
+    
+    This is the companion of the previous method. It will create a file in the
+    ISO, with basically the same behavior. It reads the file from a handle, up
+    to the end, and appends it to the current ISO. The argument direntry, if
+    not 'nil', will be used to clone the attributes. The same goes for the
+    name if the given one is "". The file will be immediately stored on disk.
+    The filename will be automatically followed by ";1" when dumping, so
+    you do not have to put it anywhere.
+    
+        :close([cuefile[, mode[, nsectors]]])
+    
+    Will finalize the isofile, by dumping all the necessary structures. The
+    argument 'cuefile' is possibly a handle pointing to an output file where
+    the ".cue" file used for "cdrwin" will be put, but this feature is not yet
+    enabled. "mode" is there to override the default ISO mode, as usual. And
+    "nsector", which is defaulted to -1, will override the number of sector field
+    written in the TOC (defaults to :getdispsect())
+
+    SO, you should only need that. But I also added some methods that you may
+    want/need/etc...
+
+
+** EXTRA ISOBUILDER METHODS **
+
+        :getdispsect()
+    
+    This will basically return the ISO file size in sectors.
+    
+        :putfile(file[, mode[, sector]])
+    
+    This will write a bare file onto the ISO. By default, mode is -1 and means
+    "take the default iso mode", and sector is -1, and means "use the value
+    returned by :getdispsect()". The function will return the sector number that
+    the file was put on.
+    
+        :putdata(array, size[, mode[, sector]])
+    
+    Basically the same as above, but with an array of bytes rather than a
+    handle. Beware, still starting at 0.
+    
+        :createsector(array[, mode[, sector]])
+    
+    Will write down a sector, by returning the address where the latter was writen.
+    Array begining at 0, mode = -1: default mode, sector = -1: use :getdispsect().
+    One interesting info to know about this function, is that, when using
+    "mode 2 form X sectors", it will set basic subheaders, especially the flags
+    "End of Record" and "End of File". So, when all the other functions will
+    set them, for :createsector, you manually have to specify them using the
+    following methods:
+    
+        :setEOF()
+        :clearEOF()
+    
+    Finally, I wrote one "helper" method, though you cannot write it yet using
+    this API:
+    
+        :copydir(dirtree, cdutils, direntry[, mode])
+    
+    This will copy one directory from a cdutils object, inside of the
+    isobuilder object. The argument 'dirtree' is the destination directory,
+    'cdutils' is the source thing, 'direntry' the directory entry from cdutils
+    to be copied, and 'mode' is here to override the default mode. It will work
+    recursively. If mode is MODE2_FORM1, and if it encounters a special XA
+    file stored in plain mode 2, it will compute the necessary data in order
+    to correctly copy it. The function does not return anything.
+
+
+-----------
+- EXAMPLE -
+-----------
+
+    Okay, I presented everything. Now for a quick example of use.
+    This simple LUA script should show you a bit how cd-tool may be programmed :
+
+        dir = cdutil:findpath "/"
+        rsize = dir.Size
+
+        iso:foreword(cdutil)
+        pvd = createpvd(cdutil)
+        root = iso:setbasics(pvd, rsize / 2048)
+        iso:copydir(root, cdutil, cdutil:findpath "/")
+
+        buf = Buffer()
+        buf:write "Touched!\n"
+        iso:createfile(root, buf, "TOUCHED.TXT"):setbasicsxa()
+
+        iso:close()
+    
+    Pwieew, all done. Good luck ! ;-)
+    
+
+Q: Tell me more about the 'interactive' Option, please.
+A: Well, this is the "-i" option you can use with the "cd-tool" command that
+   I explained in the first part. This interactive option add some functions :
+
+       printn
+
+   Works as "print", but won't add an automatic line feed at the end of the line
+   
+       quit or exit
+   
+   Will... err... exit the interactive mode
+   
+       infos([cdutils])
+   
+   will display some basic infos about the cdutils object given (cdutil is used
+   by default)
+   
+       path([cdutils])
+   
+   will print the path table of the cdutils object given
+   
+       printdir(path[, cdutils])
+   
+   will display the contents of a directory
+
+
+Q: What patch did you apply to the LUA compiler?
+A: Only one of my own, to add support for hex and octal numbers. Here it is:
+
+diff -u -r1.1 llex.c
+--- src/llex.c  6 Nov 2003 11:56:07 -0000
++++ src/llex.c  19 Nov 2003 23:03:35 -0000
+@@ -172,15 +172,34 @@
+
+ /* LUA_NUMBER */
+ static void read_numeral (LexState *LS, int comma, SemInfo *seminfo) {
++  int oct = 0, hex = 0;
+   size_t l = 0;
+   checkbuffer(LS, l);
+   if (comma) save(LS, '.', l);
+-  while (isdigit(LS->current)) {
++  else if (LS->current == '0') {
++    oct = 1;
++    checkbuffer(LS, 1);
++    save_and_next(LS, l);
++    if (LS->current == 'x') {
++      oct = 0;
++      hex = 1;
++      checkbuffer(LS, 1);
++      save_and_next(LS, l);
++    }
++  }
++  while (isdigit(LS->current) || (hex && isxdigit(LS->current))) {
+     checkbuffer(LS, l);
+     save_and_next(LS, l);
+   }
++  checkbuffer(LS, 1);
+   if (LS->current == '.') {
+     save_and_next(LS, l);
++    if (hex || oct) {
++      save(LS, '\0', l);
++      luaX_lexerror(LS,
++                   "error in number, mixing decimal point with octal or hexadecimal",
++                   TK_NUMBER);
++    }
+     if (LS->current == '.') {
+       save_and_next(LS, l);
+       save(LS, '\0', l);
+@@ -195,6 +214,12 @@
+   }
+   if (LS->current == 'e' || LS->current == 'E') {
+     save_and_next(LS, l);  /* read `E' */
++    if (hex || oct) {
++      save(LS, '\0', l);
++      luaX_lexerror(LS,
++                   "error in number, mixing exponential with octal or hexadecimal",
++                   TK_NUMBER);
++    }
+     if (LS->current == '+' || LS->current == '-')
+       save_and_next(LS, l);  /* optional exponent sign */
+     while (isdigit(LS->current)) {
+diff -u -r1.1 lobject.c
+--- src/lobject.c       6 Nov 2003 11:56:07 -0000
++++ src/lobject.c       19 Nov 2003 23:03:35 -0000
+@@ -20,13 +20,6 @@
+ #include "lstring.h"
+ #include "lvm.h"
+
+-
+-/* function to convert a string to a lua_Number */
+-#ifndef lua_str2number
+-#define lua_str2number(s,p)     strtod((s), (p))
+-#endif
+-
+-
+ const TObject luaO_nilobject = {LUA_TNIL, {NULL}};
+
+
+@@ -91,7 +84,17 @@
+
+ int luaO_str2d (const char *s, lua_Number *result) {
+   char *endptr;
+-  lua_Number res = lua_str2number(s, &endptr);
++  size_t l = strlen(s);
++  lua_Number res;
++  if ((l > 0) && (s[0] == '0')) {
++    if ((l > 2) && (s[1] == 'x')) {
++      res = strtol(s + 2, &endptr, 16);
++    } else {
++      res = strtol(s + 1, &endptr, 8);
++    }
++  } else {
++    res = strtod(s, &endptr);
++  }
+   if (endptr == s) return 0;  /* no conversion */
+   while (isspace((unsigned char)(*endptr))) endptr++;
+   if (*endptr != '\0') return 0;  /* invalid trailing characters? */
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                    %
+%  LIST OF OBJECTS, FUNCTIONS, ETC.  %
+%       DESCRIBED IN THIS FAQ        %
+%                                    %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+--------------------------------------------------------------------------------------------------------,
+NAME							|	OBJECT OR CHAPTER IT REFFERS TO		|
+--------------------------------------------------------|-----------------------------------------------|
+:canread()						|	HANDLE					|
+:canseek()						|	HANDLE					|
+:canwrite()						|	HANDLE					|
+:cdfile(direntry[, mode])				|	CDUTILS					|
+:cdfile(sector[, size[, mode]])				|	CDUTILS					|
+:clearEOF()						|	ISOBUILDER				|
+:close()						|	HANDLE					|
+:close([cuefile[, mode[, nsectors]]])			|	ISOBUILDER				|
+:copydir(dirtree, cdutils, direntry[, mode])		|	ISOBUILDER				|
+:copyfrom(handle[, size])				|	HANDLE					|
+:copyto(handle[, size])					|	HANDLE					|
+:createsector(mode, sector)				|	CDUTILS					|
+:createdir(dirtree, name[, size[, direntry[, mode]]])	|	ISOBUILDER				|
+:createfile(dirtree, name, file[, direntry[, mode]])	|	ISOBUILDER				|
+:createsector(array[, mode[, sector]])			|	ISOBUILDER				|
+:finddirectory(dir, path)				|	DIRENTRY				|
+:findparent(path)					|	DIRENTRY				|
+:findpath(path)						|	DIRENTRY				|
+:flush()						|	HANDLE					|
+:foreword(cdutils)					|	ISOBUILDER				|
+:foreword_array(array[, mode])				|	ISOBUILDER				|
+:foreword_handle(handle[, mode])			|	ISOBUILDER				|
+:fromdir(direntry)					|	DIRTREE					|
+:getdispsect()						|	ISOBUILDER				|
+:getname()						|	HANDLE					|
+:getsize()						|	HANDLE					|
+:guessmode([sector])					|	CDUTILS					|
+:hasxa()						|	DIRENTRY				|
+:isclosed()						|	HANDLE					|
+:isdir()						|	DIRENTRY				|
+:ishidden()						|	DIRENTRY				|
+:isxaaudio()						|	DIRENTRY				|
+:isxadir()						|	DIRENTRY				|
+:isxaform1()						|	DIRENTRY				|
+:isxastr()						|	DIRENTRY				|
+:isxaxa()						|	DIRENTRY				|
+:putdata(array, size[, mode[, sector]])			|	ISOBUILDER				|
+:putfile(file[, mode[, sector]])			|	ISOBUILDER				|
+:read()							|	HANDLE					|
+:read(size)						|	HANDLE					|
+:readdata(size[, sector[, mode]])			|	CDUTILS					|
+:readfile(handle, size[, sector[, mode]])		|	CDUTILS					|
+:readsector([sector[, mode]])				|	CDUTILS					|
+:readU16()						|	HANDLE					|
+:readU32()						|	HANDLE					|
+:readU8()						|	HANDLE					|
+:sectorseek(sector)					|	CDUTILS					|
+:seek(pos[, wheel])					|	HANDLE					|
+:setbasics(pvd[, rootsize[, ptsize[, nvd[, rootsect]]]])|	ISOBUILDER				|
+:setbasicsxa()						|	DIRTREE					|
+:setEOF()						|	ISOBUILDER				|
+:setz([level])						|	HANDLE					|
+:tell()							|	HANDLE					|
+:updatesector(path, newsector)				|	CDUTILS					|
+:updatesector(path, newsector)				|	CDUTILS					|
+:write(size, array)					|	HANDLE					|
+:write(string)						|	HANDLE					|
+:writedata(array, size[, sector[, mode]])		|	CDUTILS					|
+:writefile(handle[, size[, sector[, mode]])		|	CDUTILS					|
+:writesector(array[, sector[, mode]])			|	CDUTILS					|
+:writeU16(word)						|	HANDLE					|
+:writeU32(dword)					|	HANDLE					|
+:writeU8(byte)						|	HANDLE					|
+and							|	(basic layer)				|
+andB							|	(basic layer)				|
+Buffer([seekable])					|	(files - function)			|
+cddate							|	(CDDATE - function)			|
+copyhandle(source, destination[, size])			|	(HANDLE - function)			|
+createpvd(cdutils)					|	(PVD - functions)			|
+createpvd_array(array)					|	(PVD - functions)			|
+createpvd_handle(handle)				|	(PVD - functions)			|
+DirTree(father[, isdir])				|	(DIRTREE - function)			|
+exit							[	(used in interactive mode)              |
+from_bcd(number)					|	(CDUTILS object - function)		|
+from_msf(m, s, f[, start])				|	(CDUTILS object - function)		|
+from_msf(msf[, start)					|	(CDUTILS object - function)		|
+hex(number[, format])					|	(basic layer - function)		|
+infos([cdutils])					|	(used in interactive mode)              |
+Input(filename)						|	(files - function)			|
+is_valid_bcd(number)					|	(CDUTILS object - function)		|
+isobuilder(handle[, mode])				|	(ISOBUILDER - function)			|
+load([script])						|	(basic layer - function)		|
+not							|	(basic layer)				|
+notB 							|	(basic layer)				|
+or							|	(basic layer)				|
+orB							|	(basic layer)				|
+Output(filename)					|	(files - function)			|
+path([cdutils])						|	(used in interactive mode)              |
+print							|	(basic layer - function)		|
+printdir(path[, cdutils])				|	(used in interactive mode)              |
+printn							|	(used in interactive mode)              |
+quit							|	(used in interactive mode)              |
+sec_modes						|	(CDUTILS object - global variable)	|
+sec_offsts						|	(CDUTILS object - global variable)	|
+sec_sizes						|	(CDUTILS object - global variable)	|
+shl							|	(basic layer)				|
+shr 							|	(basic layer)				|
+swapdword(number)					|	(CDUTILS object - function)		|
+swapword(number)					|	(CDUTILS object - function)		|
+to_bcd(number)						|	(CDUTILS object - function)		|
+xor							|	(basic layer)				|
+xorB 							|	(basic layer)				|
+--------------------------------------------------------------------------------------------------------'
+
+
+
+%%%%%%%%%%%%%
+%           %
+%  CREDITS  %
+%           %
+%%%%%%%%%%%%%
+
+ ________________________________________________________________
+|               |                                                |
+| CD-Tool Coder | 	Pixel -> pixel@nobis-crew.org <-         |
+|               |                                                |
+ ¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+
+FAQ's "raw-writting" : 	Pixel
+¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨
+Correction, shaping :	GreatSkaori & Ti Dragon
+¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨
+
+
+SPECIAL THANKS TO :
+-------------------
+
+Yazoo
