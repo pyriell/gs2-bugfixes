@@ -36,15 +36,37 @@ dofile("util.lua");
 dofile("filelist.lua");
 dofile("patches.lua");
 
-function mainpatch()
-    local direntELF, targetRoot;
-	local hCurrFile, pvd, exesector, exefile;
-
---  Check the ELF/SLUS/SLES/SLPS to verify that the source CD or disc image (cdutil) provided is right.
+function extract()
+	--  Check the ELF/SLUS/SLES/SLPS to verify that the source CD or disc image (cdutil) provided is right.
 	direntELF = cdutil:findpath("/" .. mainexe .. ";1") or error("This is not a " .. region .. " Suikoden II disc.");
+	for i,v in ipairs(FileList) do
+		local isopath = v.path .. v.name .. ";1";
+		local deFile = cdutil:findpath(isopath) or error("Could not find file: " .. isopath .. " on source image/cd");
+		local hFile;
+		local tree;
+		local out;
+		if (IsXA(v.name) or (IsSTR(v.name) and v.name ~= "ZZZ.STR")) then
+--  Copy XA/STR files by sectors.  Copying without explicitly setting the secord and size (even MODE_RAW) hoses the data.
+--  Note that ZZZ.STR is not a STR file, or at least not a valid one.
+			hFile = cdfile(deFile["Sector"], (deFile["Size"] / 2048) * 2336, MODE_RAW);
+		else
+			hFile = cdfile(deFile);
+		end
+		print("Extracting file " .. v.name);
+		out = Output(".\\temp\\" .. v.name);
+		out:copyfrom(hFile);
+		out:close();
+		hFile:close();
+	end
+	print("##########        DISC EXTRACTION COMPLETED        #############");
+end
+
+function buildcd()
+	local direntELF, targetRoot;
+	local hCurrFile, pvd, exefile;
 
 	print("##########  REBUILDING ISO WITH SPECIFIED PATCHES  #############");
---  Create the first 16 sectors of the target ISO, i.e., the license data, from the source.
+	--  Create the first 16 sectors of the target ISO, i.e., the license data, from the source.
 	iso:foreword(cdutil);
 --  Create the Primary Volume Descriptor (PVD) from the source.
 	pvd = createpvd(cdutil);
@@ -59,68 +81,56 @@ function mainpatch()
 		local deFile = cdutil:findpath(isopath) or error("Could not find file: " .. isopath .. " on source image/cd");
 		local hFile;
 		local tree;
-		if(v.name == mainexe) then exesector = iso:getdispsect() end
+		local out;
+
+		print("Processing file " .. v.name);
 		GetDir(v.path);
+		hFile = Input(".\\temp\\" .. v.name);
+
 		if (IsXA(v.name) or (IsSTR(v.name) and v.name ~= "ZZZ.STR")) then
 --  Copy XA/STR files by sectors.  Copying without explicitly setting the secord and size (even MODE_RAW) hoses the data.
 --  Note that ZZZ.STR is not a STR file, or at least not a valid one.
-			hFile = cdfile(deFile["Sector"], (deFile["Size"] / 2048) * 2336, MODE_RAW);
 			v.lba = iso:getdispsect();
 			v.size = (hFile:getsize() / 2048) * 2336;
 			iso:createfile(pathtree[v.path].dir, v.name, hFile, deFile, MODE2):setbasicsxa();
 		else
-			if (PatchRequested(v.name)) then
-				hFile = ApplyPatches(v.name, deFile);
-				if(HasLBAList(v.name)) then
-					local out = Output(v.name);
-					out:copyfrom(hFile);
-					out:close();
-					hFile:seek(0);
+			if(IsSearchPatchFile(v.name)) then
+				local tmp = Buffer(true);
+				tmp:copyfrom(hFile);
+				hFile:close();
+				if(patch_godspeed == true and IsGodspeedFile(v.name)) then
+					ApplyGodspeedPatch(tmp, v.name);
 				end
-			else
-				local tmp = cdfile(deFile);
-				hFile = Buffer(true);
-				hFile:copyfrom(tmp);
-			end
-			if(patch_godspeed == true and IsGodspeedFile(v.name)) then
-				ApplyGodspeedPatch(hFile, v.name);
-				local out = Output(v.name);
-				out:copyfrom(hFile);
+				if(patch_gozz == true and IsGozzFile(v.name)) then
+					ApplyGozzPatch(tmp, v.name);
+				end
+				if(patch_circlet == true and IsCircletFile(v.name)) then
+					ApplyCircletPatch(tmp, v.name);
+				end
+				local out = Output(".\\temp\\" .. v.name);
+				out:copyfrom(tmp);
 				out:close();
-				hFile:seek(0);
-			end
-			if(patch_gozz == true and IsGozzFile(v.name)) then
-				ApplyGozzPatch(hFile, v.name);
-				local out = Output(v.name);
-				out:copyfrom(hFile);
-				out:close();
-				hFile:seek(0);
-			end
-			if(patch_circlet == true and IsCircletFile(v.name)) then
-				ApplyCircletPatch(hFile, v.name);
-				local out = Output(v.name);
-				out:copyfrom(hFile);
-				out:close();
-				hFile:seek(0);
+				tmp:close();
+				hFile = Input(".\\temp\\" .. v.name);
 			end
 			v.lba = iso:getdispsect();
 			v.size = hFile:getsize();
 			iso:createfile(pathtree[v.path].dir, v.name, hFile, deFile);
 		end
+		hFile:close();
 	end
 
---  Pad out the ISO, if possible.
+	--  Pad out the ISO, if possible.
+	print("########## PADDING TARGET IMAGE OUT TO " .. finalsector .. " #############");
 	local dummysector = {}
     for i = iso:getdispsect(), finalsector, 1 do
         iso:createsector(dummysector, MODE2)
     end
 
-    iso:close()
 	print("########## PATCHING LBA/FILE LISTINGS IN GAME CODE #############");
 	ApplyLBAPatch();
-	print("########## ISO SUCCESSFULLY ASSEMBLED...FINALIZING #############");
+
 	iso:close();
-	print("##########       PATCH COMPLETED SUCCESSFULLY      #############");
 end
 
 --------------------------------------------------------------------------------
@@ -186,15 +196,7 @@ function ApplyLBAPatch ()
 	local tgtFile;
 	for i,v in ipairs(LBAPatchList) do
 		print("Applying LBA Patch for " .. v.path .. v.name);
-		if(PatchRequested(v.name) or
-		  (patch_godspeed == true and IsGodspeedFile(v.name))
-		  or (patch_gozz == true and IsGozzFile(v.name))
-		  or (patch_circlet == true and IsCircletFile(v.name))) then
-			tgtFile = Input(v.name);
-		else
-			dirFile = cdutil:findpath(v.path .. v.name .. ";1") or error("Applying LBA Patch - file not found on source image: " .. v.path .. v.name);
-			tgtFile = cdfile(cdutil, dirFile);
-		end;
+		tgtFile = Input(".\\temp\\" .. v.name);
 		local buf = Buffer(true);
 		local lba = GetLBAFromFileList(v.name, v.path);
 		buf:copyfrom(tgtFile);
