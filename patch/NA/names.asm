@@ -23,7 +23,7 @@ checkchar:
 	addiu	a3, a3, 1
 	beq	v1, zero, store			; null
 	addu	v0, zero, v1
-	addiu	t0, v1, 0xFFF0			; lowercase
+	addiu	t0, v1, 0xFFF0			; lowercase (and space)
 	sltiu	t0, t0, 0x1B
 	bne	t0, zero, store
 	addiu	t0, v1, 0xFFD5			; uppercase

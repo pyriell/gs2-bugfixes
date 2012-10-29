@@ -1,0 +1,129 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (United States) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_PROPPAGE_SETUP DIALOGEX 0, 0, 497, 277
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_MINIMIZEBOX | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Suikoden Patcher"
+FONT 8, "MS Shell Dlg", 400, 0, 0x0
+BEGIN
+    LTEXT           "Available Patches:",IDC_STATIC,7,75,184,7
+    LTEXT           "Selected Patches:",IDC_STATIC,306,75,184,7
+    LISTBOX         IDC_LIST_PATCH_AVAILABLE,7,85,184,131,LBS_SORT | LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+    LISTBOX         IDC_LIST_PATCH_SELECTED,306,85,184,131,LBS_SORT | LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "> >",IDC_BUTTON_PATCH_SELECT,220,110,60,14
+    PUSHBUTTON      "< <",IDC_BUTTON_PATCH_DESELECT,220,172,60,14
+    COMBOBOX        IDC_COMBO_PATCH_VERSION,69,7,175,200,CBS_DROPDOWN | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Patch Game:",IDC_STATIC,15,9,50,8
+    EDITTEXT        IDC_EDIT_INPUT,69,28,334,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_OUTPUT,69,51,334,14,ES_AUTOHSCROLL
+    LTEXT           "Original Image:",IDC_STATIC,15,31,50,8
+    LTEXT           "Patched Image:",IDC_STATIC,15,52,52,8
+    PUSHBUTTON      "Browse...",IDC_BUTTON_BROWSE_INPUT,417,28,50,14
+    PUSHBUTTON      "Browse...",IDC_BUTTON_BROWSE_OUTPUT,417,51,50,14
+    PUSHBUTTON      "Apply Patch",IDC_BUTTON_APPLY,416,256,74,14,WS_DISABLED
+    LTEXT           "",IDC_STATIC_DESC_AVAILABLE,7,219,184,45
+    LTEXT           "",IDC_STATIC_DESC_SELECTED,306,218,184,36
+END
+
+IDD_PROPPAGE_INSTALL DIALOGEX 0, 0, 497, 277
+STYLE DS_SETFONT | DS_MODALFRAME | WS_MINIMIZEBOX | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Property Page"
+FONT 8, "MS Shell Dlg", 400, 0, 0x0
+BEGIN
+    CONTROL         "",IDC_PROGRESS,"msctls_progress32",WS_BORDER | PBS_SMOOTH,31,36,416,14
+    LTEXT           "",IDC_STATIC_PROGRESS,33,23,300,8
+    EDITTEXT        IDC_EDIT_LOG,16,66,464,171,ES_MULTILINE | ES_READONLY | WS_VSCROLL
+    PUSHBUTTON      "Done",IDC_BUTTON_DONE,440,256,50,14,WS_DISABLED
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO
+BEGIN
+    IDD_PROPPAGE_SETUP, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 490
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 270
+    END
+
+    IDD_PROPPAGE_INSTALL, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 490
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 270
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+#endif    // English (United States) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+
