@@ -1,0 +1,120 @@
+<?xml version=1.0?>
+<PACKAGE>
+  <NAME>Genso Suikoden II Bug Fix Patch</NAME>
+  <SHORTNAME>GS2 Bug Fix Patch</SHORTNAME>
+  <VERSION>2.0.059</VERSION>
+  <DATE>2012-10-17</DATE>
+  <GAME name="Suikoden II" region="North America" language="English" serial="SLUS_009.58" patchdir="patch\NA">
+    <PATCH name="Badeaux Appears" description="Badeaux will appear in the castle grounds near the pond behind the library." active="true">
+        <FILE type="ASM">badeaux.asm</FILE>
+    </PATCH>
+    <PATCH name="Castle Armory Fix" description="Prevents the Castle Armory from selling items when the player has insufficient potch." active="true">
+        <FILE type="ASM">castle_armory.asm</FILE>
+    </PATCH>
+    <PATCH name="Castle Farm Fix" description="Fixes the Castle Farm module so the player can hand in multiple seeds or animals at one time." active="true">
+        <FILE type="ASM">castle_farm.asm</FILE>
+    </PATCH>
+    <PATCH name="Chaco Joins At Level 1" description="Adds a missing Set Level command to Chaco's recruit script." active="true">
+        <FILE type="ASM">castle_farm.asm</FILE>
+    </PATCH>
+    <PATCH name="Circlet Name Correction" description="Changes &quot;circuret&quot; to &quot;circlet&quot;" active="true">
+        <SEARCH value="CIRCURET" replace="CIRCLET" case="false"></SEARCH>
+    </PATCH>
+    <PATCH name="Collectibles Fix" description="Repairs errors in the after-battle module that can prevent Recipes, Window Sets and Sound Sets from dropping." active="true">
+        <FILE type="ASM">collectibles.asm</FILE>
+    </PATCH>
+    <PATCH name="Forgiver Sign Fix" description="Fix display.  Forgiver Sign does zero damage, but a huge value is displayed." active="true">
+        <FILE type="ASM">forgiver_sign.asm</FILE>
+    </PATCH>
+    <PATCH name="Godspeed Rune Name Correction" description="Changes &quot;True Holy&quot; to &quot;Godspeed&quot;" active="true">
+        <SEARCH value="True Holy" replace="Godspeed" case="false"></SEARCH>
+    </PATCH>
+    <PATCH name="Gozz Rune renamed Minotaur Rune" description="Changes &quot;Gozz&quot; to &quot;Minotaur&quot;" active="true">
+        <SEARCH value="GOZZ" replace="MINOTAUR" case="false"></SEARCH>
+        <EXCLUDES>Gozz Rune renamed Gozu Rune</EXCLUDES>
+    </PATCH>
+    <PATCH name="Gozz Rune renamed Gozu Rune" description="Changes &quot;Gozz&quot; to &quot;Gozu&quot;" active="false">
+        <SEARCH value="GOZZ" replace="GOZU" case="false"></SEARCH>
+        <EXCLUDES>Gozz Rune renamed Minotaur Rune</EXCLUDES>
+    </PATCH>
+    <PATCH name="GS1 Load - Names Fix" description="Fixes the transfer of the hero and castle names from the original Genso Suikoden." active="true">
+        <FILE type="ASM">names.asm</FILE>
+    </PATCH>
+    <PATCH name="Inns Fix" description="Prevent the Inn from healing the party for free." active="true">
+        <FILE type="ASM">inn.asm</FILE>
+    </PATCH>
+    <PATCH name="Join At 99 Fix" description="Prevents recruits from joining at 99 in error." active="true">
+        <FILE type="ASM">join_at_99.asm</FILE>
+    </PATCH>
+    <PATCH name="Kindness Rune Fix (No Penalty)" description="When a character's invisible Kindness Rating goes below zero, the Rune gives no bonus to attack instead of maxing it out." active="false">
+        <FILE type="ASM">kindness_rune_np.asm</FILE>
+        <EXCLUDES>Kindness Rune Fix (Penalty)</EXCLUDES>
+    </PATCH>
+    <PATCH name="Kindness Rune Fix (Penalty)" description="When a character's invisible Kindness Rating goes below zero, the Rune gives a penalty to attack instead of maxing it out." active="true">
+        <FILE type="ASM">kindness_rune.asm</FILE>
+        <EXCLUDES>Kindness Rune Fix (No Penalty)</EXCLUDES>
+    </PATCH>
+    <PATCH name="Knife-thrower Fix" description="Adds a custom routine for the Knife-throwing event in Ryube that keeps HP from being zeroed." active="true">
+        <FILE type="ASM">knife_thrower.asm</FILE>
+    </PATCH>
+    <PATCH name="Lamb Fix (Unicorn Woods)" description="Separates the acquired flag for the lamb from the flag for the first chest (can now get both)." active="true">
+        <FILE type="ASM">lamb.asm</FILE>
+    </PATCH>
+    <PATCH name="Luca Battle Party-change Fix" description="The party is emptied but not reformed prior to fighting Luca, allowing the hero to be alone in the back row and effectively invincible.  Fix forces the party to reform." active="true">
+        <FILE type="ASM">luca.asm</FILE>
+    </PATCH>
+    <PATCH name="Matilda Gate Fix" description="Makes the Matilda Gate immovable." active="true">
+        <FILE type="ASM">matilda_gate.asm</FILE>
+    </PATCH>
+    <PATCH name="Music Patches" description="Fixes the disc information for several musical tracks.  They now play properly." active="true">
+        <FILE type="ASM">music.asm</FILE>
+    </PATCH>
+    <PATCH name="Rune Unite Fix" description="Repairs a bug that could allow a single character to participate in multiple Rune Unite spells." active="true">
+        <FILE type="ASM">rune_unite.asm</FILE>
+    </PATCH>
+    <PATCH name="Scroll Shop Display Fix" description="Stops the Scroll Shop from displaying the actual names of unidentified items." active="true">
+        <FILE type="ASM">scroll_shop.asm</FILE>
+    </PATCH>
+    <PATCH name="Tenzan Pass Enemies Fix" description="Translates the names of the enemies in Tenzan pass, and adds the formations that contain the Chimera-type monster to the encounter table." active="true">
+        <FILE type="ASM">tenzan.asm</FILE>
+    </PATCH>
+    <PATCH name="Trade Gossip Translation" description="Translates the text of the trade gossip, which otherwise appears as a garbage in-game." active="true">
+        <FILE type="BIN">UWASA1.BIN</FILE>
+        <FILE type="BIN">UWASA2.BIN</FILE>
+    </PATCH>
+  </GAME>
+  <GAME name="Suikoden II" region="Europe" language="English" serial="SLES_589.58" patchdir="patch\European(E)">
+      <PATCH name="Badeaux Appears" description="Badeaux will appear in the castle grounds near the pond behind the library." active="true">
+          <FILE type="ASM">badeaux.asm</FILE>
+      </PATCH>
+      <PATCH name="Castle Armory Fix" description="Prevents the Castle Armory from selling items when the player has insufficient potch." active="true">
+          <FILE type="ASM">castle_armory.asm</FILE>
+      </PATCH>
+      <PATCH name="Castle Farm Fix" description="Fixes the Castle Farm module so the player can hand in multiple seeds or animals at one time." active="true">
+          <FILE type="ASM">castle_farm.asm</FILE>
+      </PATCH>
+      <PATCH name="Chaco Joins At Level 1" description="Adds a missing Set Level command to Chaco's recruit script." active="true">
+          <FILE type="ASM">castle_farm.asm</FILE>
+      </PATCH>
+      <PATCH name="Circlet Name Correction" description="Changes &quot;circuret&quot; to &quot;circlet&quot;" active="true">
+          <SEARCH value="CIRCURET" replace="CIRCLET" case="false"></SEARCH>
+      </PATCH>
+      <PATCH name="Collectibles Fix" description="Repairs errors in the after-battle module that can prevent Recipes, Window Sets and Sound Sets from dropping." active="true">
+          <FILE type="ASM">collectibles.asm</FILE>
+      </PATCH>
+      <PATCH name="Forgiver Sign Fix" description="Fix display.  Forgiver Sign does zero damage, but a huge value is displayed." active="true">
+          <FILE type="ASM">forgiver_sign.asm</FILE>
+      </PATCH>
+      <PATCH name="Godspeed Rune Name Correction" description="Changes &quot;True Holy&quot; to &quot;Godspeed&quot;" active="true">
+          <SEARCH value="True Holy" replace="Godspeed" case="false"></SEARCH>
+      </PATCH>
+      <PATCH name="Gozz Rune renamed Minotaur Rune" description="Changes &quot;Gozz&quot; to &quot;Minotaur&quot;" active="true">
+          <SEARCH value="GOZZ" replace="MINOTAUR" case="false"></SEARCH>
+          <EXCLUDES>Gozz Rune renamed Gozu Rune</EXCLUDES>
+      </PATCH>
+      <PATCH name="Gozz Rune renamed Gozu Rune" description="Changes &quot;Gozz&quot; to &quot;Gozu&quot;" active="false">
+          <SEARCH value="GOZZ" replace="GOZU" case="false"></SEARCH>
+          <EXCLUDES>Gozz Rune renamed Minotaur Rune</EXCLUDES>
+      </PATCH>
+  </GAME>
+</PACKAGE>

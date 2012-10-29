@@ -20,8 +20,6 @@
 --  CONFIG STUFF
 --  Directory to search for patches.  Must mirror the CD's structure for patched files.
 --  You can't just put UWASA1 anywhere, it must be in %patchdir%/CDROM/130_SHOP/UWASA1.BIN
-mainexe  = "SLUS_009.58";
-region   = "US (NTSC/UC)";
 
 --  This is a listing of absolute node paths, e.g., "/CD-ROM/010-ARA/", and their DirectoryTree objects.
 --  Helps in tracking what directories exist within the target ISO, and provides easy access to the directory
@@ -32,9 +30,23 @@ pathtree = { };
 --  The official disc is actually padded with 150 dummy sectors.
 finalsector = 218497
 
+dofile("gameinfo.lua");
 dofile("util.lua");
 dofile("filelist.lua");
 dofile("patches.lua");
+
+function verify()
+	local hFile, out;
+	print("Checking disc for main executable: " .. mainexe);
+	local direntELF = cdutil:findpath("/" .. mainexe .. ";1") or error("This is not a " .. region .. " Suikoden II disc.");
+	print(mainexe .. " file found as expected, disc is good.");
+	local deFile = cdutil:findpath("/SYSTEM.CNF;1") or error("This is not a " .. region .. " Suikoden II disc.");
+	hFile = cdfile(deFile);
+	out = Output(".\\temp\\SYSTEM.CNF");
+	out:copyfrom(hFile);
+	out:close();
+	hFile:close();
+end
 
 function extract()
 	--  Check the ELF/SLUS/SLES/SLPS to verify that the source CD or disc image (cdutil) provided is right.
