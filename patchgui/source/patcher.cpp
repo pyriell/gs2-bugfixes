@@ -63,7 +63,7 @@ static wstring g_PackageVersion=L"";
 static wstring g_PackageDate=L"";
 static list<cGame> g_Game;
 static cGame* g_CurrentGame;
-static wchar_t szInputFileName[MAX_PATH], szOutputFileName[MAX_PATH];
+static wchar_t szInputFileName[MAX_PATH] = { 0 }, szOutputFileName[MAX_PATH] = { 0 };
 
 static wstring g_SourceIso;
 static wstring g_TargetIso;
@@ -230,8 +230,10 @@ void FormLoad (HWND hInst)
 void InitOfn(OPENFILENAME *ofn, HWND hwnd, wchar_t *szFileName, wchar_t *szTitleName)
 {
 	static const wchar_t szFilter[] = \
+		L"Supported Image Files (*.iso;*.bin;*.img)\0*.iso;*.bin;*.img\0" \
 		L"ISO Files (*.iso)\0*.iso\0" \
 		L"BIN Files (*.bin)\0*.bin\0" \
+		L"IMG Files (*.img)\0*.img\0" \
 		L"All Files (*.*)\0*.*\0" \
 		L"\0";
 
@@ -380,6 +382,7 @@ int ApplyPatch(HWND hwLog, HWND hwProgress, HWND hwStep)
 	strFileName = strPatchDir + L"\\patchreq.lua";
 	HANDLE hSearch = CreateFile(strFileName.c_str(), GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, 0, NULL);
 
+	SetWindowText(hwStep, L"Generating patch list...");
 	for (cPatchIterator iterPatch = g_CurrentGame->m_PatchList.begin(); iterPatch != g_CurrentGame->m_PatchList.end(); iterPatch++)
 	{
 		if(iterPatch->m_Active)
@@ -404,6 +407,7 @@ int ApplyPatch(HWND hwLog, HWND hwProgress, HWND hwStep)
 	CloseHandle(hAsm);
 	CloseHandle(hBin);
 	CloseHandle(hSearch);
+	SendMessage(hwProgress, PBM_SETPOS, 5, 0);
 
 	SetWindowText(hwStep, L"Verifying disc image...");
 	wstring strCmdLine = strPatchDir + L"\\disc_verify.bat \"" + szInputFileName + L"\"";
@@ -413,7 +417,7 @@ int ApplyPatch(HWND hwLog, HWND hwProgress, HWND hwStep)
 		AppendText(hwLog, L"\r\n\r\nFAILURE: Step 01 - \"Disc Verification\" failed.  Halting\r\n");
 		return ret;
 	}
-	SendMessage(hwProgress, PBM_SETPOS, 5, 0);
+	SendMessage(hwProgress, PBM_SETPOS, 12, 0);
 
 	SetWindowText(hwStep, L"Extracting data from disc...");
 	strCmdLine = strPatchDir + L"\\disc_extract.bat \"" + szInputFileName + L"\"";
@@ -423,7 +427,7 @@ int ApplyPatch(HWND hwLog, HWND hwProgress, HWND hwStep)
 		AppendText(hwLog, L"\r\n\r\nFAILURE: Step 02 - \"Disc Extraction\" failed.  Halting\r\n");
 		return ret;
 	}
-	SendMessage(hwProgress, PBM_SETPOS, 25, 0);
+	SendMessage(hwProgress, PBM_SETPOS, 30, 0);
 
 	SetWindowText(hwStep, L"Applying selected patches (.asm)...");
 	strCmdLine = strPatchDir + L"\\patch_asm.bat";
@@ -433,7 +437,7 @@ int ApplyPatch(HWND hwLog, HWND hwProgress, HWND hwStep)
 		AppendText(hwLog, L"\r\n\r\nFAILURE: Step 03 - \"Apply ASM Patches\" failed.  Halting\r\n");
 		return ret;
 	}
-	SendMessage(hwProgress, PBM_SETPOS, 45, 0);
+	SendMessage(hwProgress, PBM_SETPOS, 50, 0);
 
 	SetWindowText(hwStep, L"Applying selected patches (.bin)...");
 	strCmdLine = strPatchDir + L"\\patch_bin.bat";
@@ -443,7 +447,7 @@ int ApplyPatch(HWND hwLog, HWND hwProgress, HWND hwStep)
 		AppendText(hwLog, L"\r\n\r\nFAILURE: Step 04 - \"Apply BIN Patches\" failed.  Halting\r\n");
 		return ret;
 	}
-	SendMessage(hwProgress, PBM_SETPOS, 55, 0);
+	SendMessage(hwProgress, PBM_SETPOS, 60, 0);
 
 	SetWindowText(hwStep, L"Applying search patches and rebuilding disc...");
 	strCmdLine = strPatchDir + L"\\disc_rebuild.bat \"" + szInputFileName + L"\" \"" + szOutputFileName + L"\"";
@@ -672,7 +676,17 @@ LRESULT CALLBACK PropSheetSetupProc (HWND hWnd, UINT Msg, WPARAM wParam, LPARAM 
 					InitOfn(&ofn, hWnd, szInputFileName, szTitleName);
 					if(FileOpenDlg(&ofn))
 					{
-						SetDlgItemText(hWnd, IDC_EDIT_INPUT, szInputFileName);
+						if(wcscmp(szOutputFileName, szInputFileName))
+							SetDlgItemText(hWnd, IDC_EDIT_INPUT, szInputFileName);
+						else
+						{
+							if(wcslen(szInputFileName) > 0)
+							{
+								MessageBox(hWnd, L"The patched file (output) cannot be the original disc image.", L"Input Error", MB_OK);
+								ZeroMemory(szInputFileName, MAX_PATH * sizeof(wchar_t));
+							}
+							SetDlgItemText(hWnd, IDC_EDIT_INPUT, L"");
+						}
 					}
 
 					CheckApplyPatch(hWnd);
@@ -686,7 +700,18 @@ LRESULT CALLBACK PropSheetSetupProc (HWND hWnd, UINT Msg, WPARAM wParam, LPARAM 
 					InitOfn(&ofn, hWnd, szOutputFileName, szTitleName);
 					if (FileSaveDlg(&ofn))
 					{
-						SetDlgItemText(hWnd, IDC_EDIT_OUTPUT, szOutputFileName);
+						if(wcscmp(szOutputFileName, szInputFileName))
+							SetDlgItemText(hWnd, IDC_EDIT_OUTPUT, szOutputFileName);
+						else
+						{
+							if(wcslen(szOutputFileName) > 0)
+							{
+								MessageBox(hWnd, L"The patched file (output) cannot be the original disc image.", L"Output Error", MB_OK);
+								ZeroMemory(szOutputFileName, MAX_PATH * sizeof(wchar_t));
+							}
+							SetDlgItemText(hWnd, IDC_EDIT_OUTPUT, L"");
+						}
+
 					}
 
 					CheckApplyPatch(hWnd);

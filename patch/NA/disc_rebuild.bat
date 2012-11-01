@@ -5,21 +5,25 @@ REM *
 REM *
 REM ************************************************************************
 
+SET DIRPATCH=%CD%
+PUSHD ..\..\tools
+SET TOOLDIR=%CD%
+POPD
+
 IF [%1] EQU [] (
   ECHO A source ISO file name or drive letter is required.
   GOTO :printhelp
 )
 
-SET SOURCE=%1
+SET "SOURCE=%~f1"
 
-SET DIRPATCH=%~d0%~p0
-SET DEST=%2
+SET "DEST=%~f2"
 IF [%2] EQU [] (
-  SET DEST=%DIRPATCH%\gs2_patched.iso
+  SET "DEST=%DIRPATCH%\gs2_patched.iso"
   ECHO No destination file specified.  Using default "%DEST%".
 )
 ECHO ####################### BEGIN BUILDING PATCHED ISO #######################
-cd-tool gsiipatch.lua -f %SOURCE% -o %DEST% -e buildcd()
+%TOOLDIR%\cd-tool "%DIRPATCH%\gsiipatch.lua" -f "%SOURCE%" -o "%DEST%" -e buildcd()
 ECHO ###################### FINISHED BUILDING PATCHED ISO #####################
 ECHO ~~~~NOTE: The cd-tool software returns success even if the process failed.
 ECHO ~~~~check the log if you want confirmation.
