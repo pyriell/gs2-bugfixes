@@ -9,7 +9,7 @@
 .psx
 .align 4
 
-.openfile SLUS_024.42, 0x8006A800
+.openfile SLES_024.42, 0x8006A800
 
 ;Recruit at 99 Glitch
 .org 0x800A241C
