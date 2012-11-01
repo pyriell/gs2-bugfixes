@@ -1,6 +1,10 @@
 @ECHO OFF
 
-SET DIRPATCH=%~d0%~p0
+SET DIRPATCH=%CD%
+PUSHD ..\..\tools
+SET TOOLDIR=%CD%
+POPD
+
 IF EXIST %DIRPATCH%\temp RMDIR %DIRPATCH%\temp /S /Q
 MKDIR %DIRPATCH%\temp
 IF %ERRORLEVEL% NEQ 0 (
@@ -9,7 +13,7 @@ IF %ERRORLEVEL% NEQ 0 (
 )
 
 ECHO ########################  VERIFYING SOURCE IMAGE #########################
-cd-tool gsiipatch.lua -f "%1" -e verify()
+%TOOLDIR%\cd-tool "%DIRPATCH%\gsiipatch.lua" -f "%~f1" -e verify()
 IF NOT EXIST %DIRPATCH%\temp\SYSTEM.CNF (
   ECHO !! ERROR VERIFYING DISC - ABORTING !!
   EXIT(-1)
