@@ -158,7 +158,7 @@ function CreatePatchedImage ()
 		dlgPatchProgress:hide()
 		--dlgPatchProgress:destroy()
 		iup.Message("Wrong Disc", "This is not a " .. GetRegionInfo(intGameIdx) .. " Suikoden II disc.")
-		print("ERROR: Disc supplies is for the wrong region.  Region " .. GetRegionInfo(intGameIdx) .. " specified.")
+		print("ERROR: Disc supplied is for the wrong region.  Region " .. GetRegionInfo(intGameIdx) .. " specified.")
 		return iup.DEFAULT
 	end
 	intPatchProgress = 25

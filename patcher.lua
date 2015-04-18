@@ -22,6 +22,16 @@ PackageInfo = {
 		{ Name = "Suikoden II", Region = "North America", Language = "English", Serial = "SLUS_009.58", PatchDir="patch\\NA",
 		  Patches = {
 			{
+				Name="Armor Effects/Bonuses Fix",
+				Description="Fixes several bonuses (status resistances, etc.) so they apply to armor as indicated by descriptions.",
+				Active = 1, Toggle = 0,
+				Files = {
+					{ Type = "PPF", PatchFileName = "armor_fx_1.ppf", GameFileName = "BP0_FST.BIN" },
+					{ Type = "PPF", PatchFileName = "armor_fx_2.ppf", GameFileName = "BP0_SEC.BIN" }
+				}
+			},
+
+			{
 				Name = "Badeaux Appears",
 				Description = "Badeaux will appear in the castle grounds near the pond behind the library.",
 				Active = 1, Toggle = 0,
