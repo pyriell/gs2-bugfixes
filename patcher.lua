@@ -246,6 +246,15 @@ PackageInfo = {
 			},
 
 			{
+				Name="Tinto Glitch Fix",
+				Description="Fixes a script error that could make it impossible to continue the game during events in Tinto",
+				Active=1,
+				Files = {
+					{ Type="PPF", PatchFileName = "tintoscript.ppf", GameFileName = "VG01.BIN" }
+				}
+			},
+
+			{
 				Name="Trade Gossip Translation",
 				Description="Translates the text of the trade gossip, which otherwise appears as a garbage in-game.",
 				Active=1,
