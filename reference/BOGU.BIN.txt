@@ -1,0 +1,839 @@
+Name:                     
+Description:                                 
+Defense:    0 Slot: 00 Wearable: 00 Cost:      0
+Resist Element: 00 STR: 00 MAG: 00 PROT: 00 MDEF: 00 TECH: 00 SPD: 00 LUCK: 00
+Added Effects: 00 00
+Resist Status: 00 00 00 00 
+Unknowns: 00 00 00 00 
+
+Name: Bandana             
+Description: $ Def+1                         
+Defense:    1 Slot: 01 Wearable: 02 Cost:     50
+Resist Element: 00 STR: 00 MAG: 00 PROT: 00 MDEF: 00 TECH: 00 SPD: 00 LUCK: 00
+Added Effects: 00 00
+Resist Status: 00 00 00 00 
+Unknowns: 00 00 00 00 
+
+Name: Leather Hat         
+Description: $ Def+2                         
+Defense:    2 Slot: 01 Wearable: 03 Cost:    100
+Resist Element: 00 STR: 00 MAG: 00 PROT: 00 MDEF: 00 TECH: 00 SPD: 00 LUCK: 00
+Added Effects: 00 00
+Resist Status: 00 00 00 00 
+Unknowns: 00 00 00 00 
+
+Name: Feathered Hat       
+Description: $ Def+3 SPD+3 Wind Resistant    
+Defense:    3 Slot: 01 Wearable: 02 Cost:    500
+Resist Element: 23 STR: 00 MAG: 00 PROT: 00 MDEF: 00 TECH: 00 SPD: 03 LUCK: 00
+Added Effects: 00 00
+Resist Status: 00 00 00 00 
+Unknowns: 00 00 00 00 
+
+Name: Pointed Hat         
+Description: $ Def+5 Prevents Balloon        
+Defense:    5 Slot: 01 Wearable: 02 Cost:   1200
+Resist Element: 00 STR: 00 MAG: 00 PROT: 00 MDEF: 00 TECH: 00 SPD: 00 LUCK: 00
+Added Effects: 00 00
+Resist Status: 01 00 00 00 
+Unknowns: 00 00 00 00 
+
+Name: Circuret            
+Description: $ Def+7                         
+Defense:    7 Slot: 01 Wearable: 03 Cost:   3500
+Resist Element: 00 STR: 00 MAG: 00 PROT: 00 MDEF: 00 TECH: 00 SPD: 00 LUCK: 00
+Added Effects: 00 00
+Resist Status: 00 00 00 00 
+Unknowns: 00 00 00 00 
+
+Name: Half Helmet         
+Description: $ Def+10                        
+Defense:   10 Slot: 01 Wearable: 03 Cost:   7800
+Resist Element: 00 STR: 00 MAG: 00 PROT: 00 MDEF: 00 TECH: 00 SPD: 00 LUCK: 00
+Added Effects: 00 00
+Resist Status: 00 00 00 00 
+Unknowns: 00 00 00 00 
+
+Name: Head Gear           
+Description: $ Def+14                        
+Defense:   14 Slot: 01 Wearable: 02 Cost:  12000
+Resist Element: 00 STR: 00 MAG: 00 PROT: 00 MDEF: 00 TECH: 00 SPD: 00 LUCK: 00
+Added Effects: 00 00
+Resist Status: 00 00 00 00 
+Unknowns: 00 00 00 00 
+
+Name: Silver Hat          
+Description: $ Def+19 Heals HP               
+Defense:   19 Slot: 01 Wearable: 02 Cost:  24000
+Resist Element: 27 STR: 00 MAG: 00 PROT: 00 MDEF: 00 TECH: 00 SPD: 00 LUCK: 00
+Added Effects: 10 00
+Resist Status: 00 00 00 00 
+Unknowns: 00 00 00 00 
+
+Name: Full Helmet         
+Description: $ Def+20                        
+Defense:   20 Slot: 01 Wearable: 01 Cost:  18200
+Resist Element: 00 STR: 00 MAG: 00 PROT: 00 MDEF: 00 TECH: 00 SPD: 00 LUCK: 00
+Added Effects: 00 00
+Resist Status: 00 00 00 00 
+Unknowns: 00 00 00 00 
+
+Name: Wind Hat            
+Description: $ Def+24 SPD+7 Wind Resistant   
+Defense:   24 Slot: 01 Wearable: 02 Cost:  35000
+Resist Element: 23 STR: 00 MAG: 00 PROT: 00 MDEF: 00 TECH: 00 SPD: 07 LUCK: 00
+Added Effects: 00 00
+Resist Status: 00 00 00 00 
+Unknowns: 00 00 00 00 
+
+Name: Flame Helmet        
+Description: $ Def+30 STR+4 Fire Resistant   
+Defense:   30 Slot: 01 Wearable: 01 Cost:  42000
+Resist Element: 21 STR: 04 MAG: 00 PROT: 00 MDEF: 00 TECH: 00 SPD: 00 LUCK: 00
+Added Effects: 00 00
+Resist Status: 00 00 00 00 
+Unknowns: 00 00 00 00 
+
+Name: Horned Helmet       
+Description: $ Def+35                        
+Defense:   35 Slot: 01 Wearable: 01 Cost:  65000
+Resist Element: 00 STR: 00 MAG: 00 PROT: 00 MDEF: 00 TECH: 00 SPD: 00 LUCK: 00
+Added Effects: 00 00
+Resist Status: 00 00 00 00 
+Unknowns: 00 00 00 00 
+
+Name: Robe                
+Description: $ Def+1                         
+Defense:    1 Slot: 02 Wearable: 0E Cost:    100
+Resist Element: 00 STR: 00 MAG: 00 PROT: 00 MDEF: 00 TECH: 00 SPD: 00 LUCK: 00
+Added Effects: 00 00
+Resist Status: 00 00 00 00 
+Unknowns: 00 00 00 00 
+
+Name: Tunic               
+Description: $ Def+2                         
+Defense:    2 Slot: 02 Wearable: 06 Cost:    200
+Resist Element: 00 STR: 00 MAG: 00 PROT: 00 MDEF: 00 TECH: 00 SPD: 00 LUCK: 00
+Added Effects: 00 00
+Resist Status: 00 00 00 00 
+Unknowns: 00 00 00 00 
+
+Name: Leather Coat        
+Description: $ Def+4                         
+Defense:    4 Slot: 02 Wearable: 07 Cost:    700
+Resist Element: 00 STR: 00 MAG: 00 PROT: 00 MDEF: 00 TECH: 00 SPD: 00 LUCK: 00
+Added Effects: 00 00
+Resist Status: 00 00 00 00 
+Unknowns: 00 00 00 00 
+
+Name: Brass Armor         
+Description: $ Def+6                         
+Defense:    6 Slot: 02 Wearable: 03 Cost:   1000
+Resist Element: 00 STR: 00 MAG: 00 PROT: 00 MDEF: 00 TECH: 00 SPD: 00 LUCK: 00
+Added Effects: 00 00
+Resist Status: 00 00 00 00 
+Unknowns: 00 00 00 00 
+
+Name: Guard Robe          
+Description: $ Def+7                         
+Defense:    7 Slot: 02 Wearable: 0E Cost:   1700
+Resist Element: 00 STR: 00 MAG: 00 PROT: 00 MDEF: 00 TECH: 00 SPD: 00 LUCK: 00
+Added Effects: 00 00
+Resist Status: 00 00 00 00 
+Unknowns: 00 00 00 00 
+
+Name: Karate Uniform      
+Description: $ Def+10 Tech+5                 
+Defense:   10 Slot: 02 Wearable: 06 Cost:   3000
+Resist Element: 00 STR: 00 MAG: 00 PROT: 00 MDEF: 00 TECH: 05 SPD: 00 LUCK: 00
+Added Effects: 00 00
+Resist Status: 00 00 00 00 
+Unknowns: 00 00 00 00 
+
+Name: Leather Armor       
+Description: $ Def+14                        
+Defense:   14 Slot: 02 Wearable: 03 Cost:   5900
+Resist Element: 00 STR: 00 MAG: 00 PROT: 00 MDEF: 00 TECH: 00 SPD: 00 LUCK: 00
+Added Effects: 00 00
+Resist Status: 00 00 00 00 
+Unknowns: 00 00 00 00 
+
+Name: Chain Mail          
+Description: $ Def+16                        
+Defense:   16 Slot: 02 Wearable: 02 Cost:   6500
+Resist Element: 00 STR: 00 MAG: 00 PROT: 00 MDEF: 00 TECH: 00 SPD: 00 LUCK: 00
+Added Effects: 00 00
+Resist Status: 00 00 00 00 
+Unknowns: 00 00 00 00 
+
+Name: Ninja Suit          
+Description: $ Def+17 Spd+15                 
+Defense:   17 Slot: 02 Wearable: 06 Cost:  88000
+Resist Element: 00 STR: 00 MAG: 00 PROT: 00 MDEF: 00 TECH: 00 SPD: 15 LUCK: 00
+Added Effects: 00 00
+Resist Status: 00 00 00 00 
+Unknowns: 00 00 00 00 
+
+Name: Half Plate          
+Description: $ Def+19                        
+Defense:   19 Slot: 02 Wearable: 01 Cost:  12000
+Resist Element: 00 STR: 00 MAG: 00 PROT: 00 MDEF: 00 TECH: 00 SPD: 00 LUCK: 00
+Added Effects: 00 00
+Resist Status: 00 00 00 00 
+Unknowns: 00 00 00 00 
+
+Name: Magic Robe          
+Description: $ Def+22                        
+Defense:   22 Slot: 02 Wearable: 0E Cost:  20000
+Resist Element: 00 STR: 00 MAG: 00 PROT: 00 MDEF: 00 TECH: 00 SPD: 00 LUCK: 00
+Added Effects: 00 00
+Resist Status: 00 00 00 00 
+Unknowns: 00 00 00 00 
+
+Name: Thunder God Garb    
+Description: $Def+25 Hit+10 Resist Lightning 
+Defense:   25 Slot: 02 Wearable: 04 Cost:  23000
+Resist Element: 25 STR: 00 MAG: 00 PROT: 00 MDEF: 00 TECH: 00 SPD: 00 LUCK: 00
+Added Effects: 00 00
+Resist Status: 00 00 00 00 
+Unknowns: 00 00 00 00 
+
+Name: Scale Mail          
+Description: $ Def+28                        
+Defense:   28 Slot: 02 Wearable: 02 Cost:  22000
+Resist Element: 00 STR: 00 MAG: 00 PROT: 00 MDEF: 00 TECH: 00 SPD: 00 LUCK: 00
+Added Effects: 00 00
+Resist Status: 00 00 00 00 
+Unknowns: 00 00 00 00 
+
+Name: Dragon Armor        
+Description: $ Def+30                        
+Defense:   30 Slot: 02 Wearable: 03 Cost:  23000
+Resist Element: 00 STR: 00 MAG: 00 PROT: 00 MDEF: 00 TECH: 00 SPD: 00 LUCK: 00
+Added Effects: 00 00
+Resist Status: 00 00 00 00 
+Unknowns: 00 00 00 00 
+
+Name: Master Robe         
+Description: $ Def+33 Heals HP               
+Defense:   33 Slot: 02 Wearable: 0C Cost:  24000
+Resist Element: 00 STR: 00 MAG: 00 PROT: 00 MDEF: 00 TECH: 00 SPD: 00 LUCK: 00
+Added Effects: 10 00
+Resist Status: 00 00 00 00 
+Unknowns: 00 00 00 00 
+
+Name: Full Plate          
+Description: $ Def+36                        
+Defense:   36 Slot: 02 Wearable: 01 Cost:  26000
+Resist Element: 00 STR: 00 MAG: 00 PROT: 00 MDEF: 00 TECH: 00 SPD: 00 LUCK: 00
+Added Effects: 00 00
+Resist Status: 00 00 00 00 
+Unknowns: 00 00 00 00 
+
+Name: Taikyoku Wear       
+Description: $ Def+40 SPD+10                 
+Defense:   40 Slot: 02 Wearable: 04 Cost:  28000
+Resist Element: 00 STR: 00 MAG: 00 PROT: 00 MDEF: 00 TECH: 00 SPD: 10 LUCK: 00
+Added Effects: 00 00
+Resist Status: 00 00 00 00 
+Unknowns: 00 00 00 00 
+
+Name: Master Garb         
+Description: $ Def+45 Str+15 Tech+15         
+Defense:   45 Slot: 02 Wearable: 03 Cost:  37000
+Resist Element: 00 STR: 15 MAG: 00 PROT: 00 MDEF: 00 TECH: 15 SPD: 00 LUCK: 00
+Added Effects: 00 00
+Resist Status: 00 00 00 00 
+Unknowns: 00 00 00 00 
+
+Name: Robe of Mist        
+Description: Def+47 Repel Magic Resist Water 
+Defense:   47 Slot: 02 Wearable: 0C Cost:  54000
+Resist Element: 22 STR: 00 MAG: 00 PROT: 00 MDEF: 00 TECH: 00 SPD: 00 LUCK: 00
+Added Effects: 00 40
+Resist Status: 00 00 00 00 
+Unknowns: 00 00 00 00 
+
+Name: Earth Armor         
+Description: $ Def+49 Anti-bat Resist Earth  
+Defense:   49 Slot: 02 Wearable: 03 Cost:  67000
+Resist Element: 24 STR: 00 MAG: 00 PROT: 00 MDEF: 00 TECH: 00 SPD: 00 LUCK: 00
+Added Effects: 00 00
+Resist Status: 45 E9 01 00 
+Unknowns: 00 00 00 00 
+
+Name: Dream Robe          
+Description: $ Def+52 Impervious to Attacks  
+Defense:   52 Slot: 02 Wearable: 04 Cost:  95000
+Resist Element: 00 STR: 00 MAG: 00 PROT: 00 MDEF: 00 TECH: 00 SPD: 00 LUCK: 00
+Added Effects: 00 00
+Resist Status: 00 00 00 00 
+Unknowns: 00 00 00 00 
+
+Name: Silver Armor        
+Description: $ Def+55 Heals HP Resist Dark   
+Defense:   55 Slot: 02 Wearable: 02 Cost: 120000
+Resist Element: 27 STR: 00 MAG: 00 PROT: 00 MDEF: 00 TECH: 00 SPD: 00 LUCK: 00
+Added Effects: 00 00
+Resist Status: 00 00 00 00 
+Unknowns: 00 00 00 00 
+
+Name: Knight Armor        
+Description: $ Def+58                        
+Defense:   58 Slot: 02 Wearable: 01 Cost: 180000
+Resist Element: 00 STR: 00 MAG: 00 PROT: 00 MDEF: 00 TECH: 00 SPD: 00 LUCK: 00
+Added Effects: 00 00
+Resist Status: 00 00 00 00 
+Unknowns: 00 00 00 00 
+
+Name: Blood Armor         
+Description: $ Def+62 Takes DMG each turn    
+Defense:   62 Slot: 02 Wearable: 03 Cost: 165000
+Resist Element: 00 STR: 00 MAG: 00 PROT: 00 MDEF: 00 TECH: 00 SPD: 00 LUCK: 00
+Added Effects: 00 00
+Resist Status: 00 00 00 00 
+Unknowns: 00 00 00 00 
+
+Name: Windspun Armor      
+Description: $ Def+65 Spd+15 Resist Wind     
+Defense:   65 Slot: 02 Wearable: 01 Cost: 210000
+Resist Element: 23 STR: 00 MAG: 00 PROT: 00 MDEF: 00 TECH: 00 SPD: 15 LUCK: 00
+Added Effects: 00 00
+Resist Status: 00 00 00 00 
+Unknowns: 00 00 00 00 
+
+Name: Wooden Shield       
+Description: $ Def+2                         
+Defense:    2 Slot: 04 Wearable: 01 Cost:    300
+Resist Element: 00 STR: 00 MAG: 00 PROT: 00 MDEF: 00 TECH: 00 SPD: 00 LUCK: 00
+Added Effects: 00 00
+Resist Status: 00 00 00 00 
+Unknowns: 00 00 00 00 
+
+Name: Steel Shield        
+Description: $ Def+7                         
+Defense:    7 Slot: 04 Wearable: 01 Cost:   2500
+Resist Element: 00 STR: 00 MAG: 00 PROT: 00 MDEF: 00 TECH: 00 SPD: 00 LUCK: 00
+Added Effects: 00 00
+Resist Status: 00 00 00 00 
+Unknowns: 00 00 00 00 
+
+Name: Kite Shield         
+Description: $ Def+12                        
+Defense:   12 Slot: 04 Wearable: 01 Cost:   4300
+Resist Element: 00 STR: 00 MAG: 00 PROT: 00 MDEF: 00 TECH: 00 SPD: 00 LUCK: 00
+Added Effects: 00 00
+Resist Status: 00 00 00 00 
+Unknowns: 00 00 00 00 
+
+Name: Mangosh             
+Description: $ Def+19 Return Stab x 1.5      
+Defense:   19 Slot: 04 Wearable: 01 Cost:   6500
+Resist Element: 00 STR: 00 MAG: 00 PROT: 00 MDEF: 00 TECH: 00 SPD: 00 LUCK: 00
+Added Effects: 00 00
+Resist Status: 00 00 00 00 
+Unknowns: 00 00 00 00 
+
+Name: Silver Shield       
+Description: $ Def+27 Heals HP Resist Dark   
+Defense:   27 Slot: 04 Wearable: 01 Cost:  10000
+Resist Element: 27 STR: 00 MAG: 00 PROT: 00 MDEF: 00 TECH: 00 SPD: 00 LUCK: 00
+Added Effects: 10 00
+Resist Status: 00 00 00 00 
+Unknowns: 00 00 00 00 
+
+Name: Chaos Shield        
+Description: $ Def+34                        
+Defense:   34 Slot: 04 Wearable: 01 Cost:  17000
+Resist Element: 00 STR: 00 MAG: 00 PROT: 00 MDEF: 00 TECH: 00 SPD: 00 LUCK: 00
+Added Effects: 00 00
+Resist Status: 00 00 00 00 
+Unknowns: 00 00 00 00 
+
+Name: Earth Shield        
+Description: $ Def+36 Anti-bat Resist Earth  
+Defense:   36 Slot: 04 Wearable: 01 Cost:  32000
+Resist Element: 24 STR: 00 MAG: 00 PROT: 00 MDEF: 00 TECH: 00 SPD: 00 LUCK: 00
+Added Effects: 00 00
+Resist Status: 45 E9 01 00 
+Unknowns: 00 00 00 00 
+
+Name: Wooden Shoes        
+Description: $ Def+1                         
+Defense:    1 Slot: 28 Wearable: 7E Cost:    100
+Resist Element: 00 STR: 00 MAG: 00 PROT: 00 MDEF: 00 TECH: 00 SPD: 00 LUCK: 00
+Added Effects: 00 00
+Resist Status: 00 00 00 00 
+Unknowns: 00 00 00 00 
+
+Name: Boots               
+Description: $ Def+3                         
+Defense:    3 Slot: 28 Wearable: 7E Cost:    800
+Resist Element: 00 STR: 00 MAG: 00 PROT: 00 MDEF: 00 TECH: 00 SPD: 00 LUCK: 00
+Added Effects: 00 00
+Resist Status: 00 00 00 00 
+Unknowns: 00 00 00 00 
+
+Name: Toe Shoes           
+Description: $ Def+9                         
+Defense:    9 Slot: 28 Wearable: 7C Cost:   2800
+Resist Element: 00 STR: 00 MAG: 00 PROT: 00 MDEF: 00 TECH: 00 SPD: 00 LUCK: 00
+Added Effects: 00 00
+Resist Status: 00 00 00 00 
+Unknowns: 00 00 00 00 
+
+Name: Winged Boots        
+Description: $ Def+14 Spd+10                 
+Defense:   14 Slot: 28 Wearable: 7C Cost:  10200
+Resist Element: 00 STR: 00 MAG: 00 PROT: 00 MDEF: 00 TECH: 00 SPD: 10 LUCK: 00
+Added Effects: 00 00
+Resist Status: 00 00 00 00 
+Unknowns: 00 00 00 00 
+
+Name: Iron Boots          
+Description: $ Def+15                        
+Defense:   15 Slot: 28 Wearable: 7C Cost:  17000
+Resist Element: 00 STR: 00 MAG: 00 PROT: 00 MDEF: 00 TECH: 00 SPD: 00 LUCK: 00
+Added Effects: 00 00
+Resist Status: 00 00 00 00 
+Unknowns: 00 00 00 00 
+
+Name: Gloves              
+Description: $ Def+2                         
+Defense:    2 Slot: 18 Wearable: 7D Cost:    300
+Resist Element: 00 STR: 00 MAG: 00 PROT: 00 MDEF: 00 TECH: 00 SPD: 00 LUCK: 00
+Added Effects: 00 00
+Resist Status: 00 00 00 00 
+Unknowns: 00 00 00 00 
+
+Name: Gauntlet            
+Description: $ Def+4                         
+Defense:    4 Slot: 18 Wearable: 7D Cost:   1700
+Resist Element: 00 STR: 00 MAG: 00 PROT: 00 MDEF: 00 TECH: 00 SPD: 00 LUCK: 00
+Added Effects: 00 00
+Resist Status: 00 00 00 00 
+Unknowns: 00 00 00 00 
+
+Name: Silverlet           
+Description: $ Def+11                        
+Defense:   11 Slot: 18 Wearable: 7D Cost:   7000
+Resist Element: 00 STR: 00 MAG: 00 PROT: 00 MDEF: 00 TECH: 00 SPD: 00 LUCK: 00
+Added Effects: 00 00
+Resist Status: 00 00 00 00 
+Unknowns: 00 00 00 00 
+
+Name: Power Gloves        
+Description: $ Def+16 Str+15                 
+Defense:   16 Slot: 18 Wearable: 7D Cost:  16500
+Resist Element: 00 STR: 15 MAG: 00 PROT: 00 MDEF: 00 TECH: 00 SPD: 00 LUCK: 00
+Added Effects: 00 00
+Resist Status: 00 00 00 00 
+Unknowns: 00 00 00 00 
+
+Name: Goldlet             
+Description: $ Def+18                        
+Defense:   18 Slot: 18 Wearable: 7D Cost:  19000
+Resist Element: 00 STR: 00 MAG: 00 PROT: 00 MDEF: 00 TECH: 00 SPD: 00 LUCK: 00
+Added Effects: 00 00
+Resist Status: 00 00 00 00 
+Unknowns: 00 00 00 00 
+
+Name: Cape                
+Description: $ Def+1                         
+Defense:    1 Slot: 08 Wearable: 7F Cost:    400
+Resist Element: 00 STR: 00 MAG: 00 PROT: 00 MDEF: 00 TECH: 00 SPD: 00 LUCK: 00
+Added Effects: 00 00
+Resist Status: 00 00 00 00 
+Unknowns: 00 00 00 00 
+
+Name: Leather Cape        
+Description: $ Def+5                         
+Defense:    5 Slot: 08 Wearable: 7F Cost:   1300
+Resist Element: 00 STR: 00 MAG: 00 PROT: 00 MDEF: 00 TECH: 00 SPD: 00 LUCK: 00
+Added Effects: 00 00
+Resist Status: 00 00 00 00 
+Unknowns: 00 00 00 00 
+
+Name: Fur Cape            
+Description: $ Def+9                         
+Defense:    9 Slot: 08 Wearable: 7F Cost:   3500
+Resist Element: 00 STR: 00 MAG: 00 PROT: 00 MDEF: 00 TECH: 00 SPD: 00 LUCK: 00
+Added Effects: 00 00
+Resist Status: 00 00 00 00 
+Unknowns: 00 00 00 00 
+
+Name: Cape of Darkness    
+Description: $ Def+12                        
+Defense:   12 Slot: 08 Wearable: 7F Cost:   6800
+Resist Element: 00 STR: 00 MAG: 00 PROT: 00 MDEF: 00 TECH: 00 SPD: 00 LUCK: 00
+Added Effects: 00 00
+Resist Status: 00 00 00 00 
+Unknowns: 00 00 00 00 
+
+Name: Crimson Cape        
+Description: $ Def+14                        
+Defense:   14 Slot: 08 Wearable: 7F Cost:   9000
+Resist Element: 00 STR: 00 MAG: 00 PROT: 00 MDEF: 00 TECH: 00 SPD: 00 LUCK: 00
+Added Effects: 00 00
+Resist Status: 00 00 00 00 
+Unknowns: 00 00 00 00 
+
+Name: Necklace            
+Description: $ Def+7                         
+Defense:    7 Slot: 08 Wearable: 03 Cost:   1600
+Resist Element: 00 STR: 00 MAG: 00 PROT: 00 MDEF: 00 TECH: 00 SPD: 00 LUCK: 00
+Added Effects: 00 00
+Resist Status: 00 00 00 00 
+Unknowns: 00 00 00 00 
+
+Name: Heavy Necklace      
+Description: $ Def+11                        
+Defense:   11 Slot: 08 Wearable: 03 Cost:   5700
+Resist Element: 00 STR: 00 MAG: 00 PROT: 00 MDEF: 00 TECH: 00 SPD: 00 LUCK: 00
+Added Effects: 00 00
+Resist Status: 00 00 00 00 
+Unknowns: 00 00 00 00 
+
+Name: Silver Necklace     
+Description: $ Def+17 Heals HP               
+Defense:   17 Slot: 08 Wearable: 03 Cost:  20000
+Resist Element: 00 STR: 00 MAG: 00 PROT: 00 MDEF: 00 TECH: 00 SPD: 00 LUCK: 00
+Added Effects: 00 00
+Resist Status: 00 00 00 00 
+Unknowns: 00 00 00 00 
+
+Name: Gold Necklace       
+Description: $ Def+21 Mag Def+5              
+Defense:   21 Slot: 08 Wearable: 03 Cost:  32000
+Resist Element: 00 STR: 00 MAG: 00 PROT: 00 MDEF: 05 TECH: 00 SPD: 00 LUCK: 00
+Added Effects: 10 00
+Resist Status: 00 00 00 00 
+Unknowns: 00 00 00 00 
+
+Name: Wing Ornament       
+Description: $ Def+19 Spd+12                 
+Defense:   19 Slot: 08 Wearable: 01 Cost:   8000
+Resist Element: 00 STR: 00 MAG: 00 PROT: 00 MDEF: 00 TECH: 00 SPD: 12 LUCK: 00
+Added Effects: 00 00
+Resist Status: 00 00 00 00 
+Unknowns: 00 00 00 00 
+
+Name: Leggings            
+Description: $ Def+2                         
+Defense:    2 Slot: 28 Wearable: 7F Cost:    200
+Resist Element: 00 STR: 00 MAG: 00 PROT: 00 MDEF: 00 TECH: 00 SPD: 00 LUCK: 00
+Added Effects: 00 00
+Resist Status: 00 00 00 00 
+Unknowns: 00 00 00 00 
+
+Name: Shoulder Pads       
+Description: $ Def+5                         
+Defense:    5 Slot: 18 Wearable: 7F Cost:   2000
+Resist Element: 00 STR: 00 MAG: 00 PROT: 00 MDEF: 00 TECH: 00 SPD: 00 LUCK: 00
+Added Effects: 00 00
+Resist Status: 00 00 00 00 
+Unknowns: 00 00 00 00 
+
+Name: Cheek Guards        
+Description: $ Def+3                         
+Defense:    3 Slot: 08 Wearable: 7F Cost:   1000
+Resist Element: 00 STR: 00 MAG: 00 PROT: 00 MDEF: 00 TECH: 00 SPD: 00 LUCK: 00
+Added Effects: 00 00
+Resist Status: 00 00 00 00 
+Unknowns: 00 00 00 00 
+
+Name: Belt of Strength    
+Description: $ Def+6 Str+5                   
+Defense:    6 Slot: 08 Wearable: 7F Cost:   4800
+Resist Element: 00 STR: 05 MAG: 00 PROT: 00 MDEF: 00 TECH: 00 SPD: 00 LUCK: 00
+Added Effects: 00 00
+Resist Status: 00 00 00 00 
+Unknowns: 00 00 00 00 
+
+Name: Fire Emblem         
+Description: $ Def+7 Str+15 Resist Fire      
+Defense:    7 Slot: 08 Wearable: 65 Cost:   3300
+Resist Element: 21 STR: 15 MAG: 00 PROT: 00 MDEF: 00 TECH: 00 SPD: 00 LUCK: 00
+Added Effects: 00 00
+Resist Status: 00 00 00 00 
+Unknowns: 00 00 00 00 
+
+Name: Gold Emblem         
+Description: $ Def+10 Mag Def+10             
+Defense:   10 Slot: 08 Wearable: 65 Cost:   8500
+Resist Element: 00 STR: 00 MAG: 00 PROT: 00 MDEF: 10 TECH: 00 SPD: 00 LUCK: 00
+Added Effects: 00 00
+Resist Status: 00 00 00 00 
+Unknowns: 00 00 00 00 
+
+Name: Blue Ribbon         
+Description: $ Def+6 Can't be targeted       
+Defense:    6 Slot: 08 Wearable: 1C Cost:   6600
+Resist Element: 00 STR: 00 MAG: 00 PROT: 00 MDEF: 00 TECH: 00 SPD: 00 LUCK: 00
+Added Effects: 00 00
+Resist Status: 00 04 00 00 
+Unknowns: 00 00 00 00 
+
+Name: Star Earrings       
+Description: $ Def+8 Heals HP                
+Defense:    8 Slot: 08 Wearable: 1C Cost:  12000
+Resist Element: 00 STR: 00 MAG: 00 PROT: 00 MDEF: 00 TECH: 00 SPD: 00 LUCK: 00
+Added Effects: 10 00
+Resist Status: 00 00 00 00 
+Unknowns: 00 00 00 00 
+
+Name: Sun Badge           
+Description: $ Def+4 Heals HP                
+Defense:    4 Slot: 08 Wearable: 2A Cost:   3700
+Resist Element: 00 STR: 00 MAG: 00 PROT: 00 MDEF: 00 TECH: 00 SPD: 00 LUCK: 00
+Added Effects: 10 00
+Resist Status: 00 00 00 00 
+Unknowns: 00 00 00 00 
+
+Name: Fish Badge          
+Description: $ Def+6 Repel Magic (3%)        
+Defense:    6 Slot: 08 Wearable: 2A Cost:   4300
+Resist Element: 00 STR: 00 MAG: 00 PROT: 00 MDEF: 00 TECH: 00 SPD: 00 LUCK: 00
+Added Effects: 00 40
+Resist Status: 00 00 00 00 
+Unknowns: 00 00 00 00 
+
+Name: Rose Brooch         
+Description: $ Def+13                        
+Defense:   13 Slot: 08 Wearable: 04 Cost:  14000
+Resist Element: 00 STR: 00 MAG: 00 PROT: 00 MDEF: 00 TECH: 00 SPD: 00 LUCK: 00
+Added Effects: 00 00
+Resist Status: 00 00 00 00 
+Unknowns: 00 00 00 00 
+
+Name: Water Amulet        
+Description: $Def+6 Repel Magic Resist Water 
+Defense:    6 Slot: 08 Wearable: 7F Cost:   3800
+Resist Element: 22 STR: 00 MAG: 00 PROT: 00 MDEF: 00 TECH: 00 SPD: 00 LUCK: 00
+Added Effects: 00 40
+Resist Status: 00 00 00 00 
+Unknowns: 00 00 00 00 
+
+Name: Thunder Amulet      
+Description: $ Def+9 Hit+15 Resist Lightning 
+Defense:    9 Slot: 08 Wearable: 7F Cost:   7500
+Resist Element: 25 STR: 00 MAG: 00 PROT: 00 MDEF: 00 TECH: 00 SPD: 00 LUCK: 00
+Added Effects: 00 00
+Resist Status: 00 00 00 00 
+Unknowns: 00 00 00 00 
+
+Name: Wind Amulet         
+Description: $ Def+12 Spd+10 Resist Wind     
+Defense:   12 Slot: 08 Wearable: 7F Cost:  13000
+Resist Element: 23 STR: 00 MAG: 00 PROT: 00 MDEF: 00 TECH: 00 SPD: 10 LUCK: 00
+Added Effects: 00 00
+Resist Status: 00 00 00 00 
+Unknowns: 00 00 00 00 
+
+Name: Guard Ring          
+Description: $ Def+7 Mag Def+10              
+Defense:    7 Slot: 08 Wearable: 7F Cost:   8500
+Resist Element: 00 STR: 00 MAG: 00 PROT: 00 MDEF: 10 TECH: 00 SPD: 00 LUCK: 00
+Added Effects: 00 00
+Resist Status: 00 00 00 00 
+Unknowns: 00 00 00 00 
+
+Name: Magic Ring          
+Description: $ Def+7 Mag+15                  
+Defense:    7 Slot: 08 Wearable: 7F Cost:  13000
+Resist Element: 00 STR: 00 MAG: 15 PROT: 00 MDEF: 00 TECH: 00 SPD: 00 LUCK: 00
+Added Effects: 00 00
+Resist Status: 00 00 00 00 
+Unknowns: 00 00 00 00 
+
+Name: Speed Ring          
+Description: $ Def+10 Spd+15                 
+Defense:   10 Slot: 08 Wearable: 7F Cost:  16000
+Resist Element: 00 STR: 00 MAG: 00 PROT: 00 MDEF: 00 TECH: 00 SPD: 15 LUCK: 00
+Added Effects: 00 00
+Resist Status: 00 00 00 00 
+Unknowns: 00 00 00 00 
+
+Name: Power Ring          
+Description: $ Def+8 Str+20                  
+Defense:    8 Slot: 08 Wearable: 7F Cost:  14000
+Resist Element: 00 STR: 20 MAG: 00 PROT: 00 MDEF: 00 TECH: 00 SPD: 00 LUCK: 00
+Added Effects: 00 00
+Resist Status: 00 00 00 00 
+Unknowns: 00 00 00 00 
+
+Name: Skill Ring          
+Description: $ Def+9 Tech+20                 
+Defense:    9 Slot: 08 Wearable: 7F Cost:  11500
+Resist Element: 00 STR: 00 MAG: 00 PROT: 00 MDEF: 00 TECH: 20 SPD: 00 LUCK: 00
+Added Effects: 00 00
+Resist Status: 00 00 00 00 
+Unknowns: 00 00 00 00 
+
+Name: Lucky Ring          
+Description: $ Def+12 Luck+20                
+Defense:   12 Slot: 08 Wearable: 2A Cost:  13000
+Resist Element: 00 STR: 00 MAG: 00 PROT: 00 MDEF: 00 TECH: 00 SPD: 00 LUCK: 20
+Added Effects: 00 00
+Resist Status: 00 00 00 00 
+Unknowns: 00 00 00 00 
+
+Name: Mole Helmet         
+Description: $ Def+12 Prevent Unfriendly     
+Defense:   12 Slot: 01 Wearable: 03 Cost:   8500
+Resist Element: 00 STR: 00 MAG: 00 PROT: 00 MDEF: 00 TECH: 00 SPD: 00 LUCK: 00
+Added Effects: 00 00
+Resist Status: 00 80 00 00 
+Unknowns: 00 00 00 00 
+
+Name: Mole Suit           
+Description: $ Def+29 Resist Earth No Target 
+Defense:   29 Slot: 02 Wearable: 0F Cost:  25000
+Resist Element: 24 STR: 00 MAG: 00 PROT: 00 MDEF: 00 TECH: 00 SPD: 00 LUCK: 00
+Added Effects: 00 00
+Resist Status: 00 04 00 00 
+Unknowns: 00 00 00 00 
+
+Name: Mole Shield         
+Description: $ Def+22 Repel Magic (5%)       
+Defense:   22 Slot: 04 Wearable: 01 Cost:   8500
+Resist Element: 00 STR: 00 MAG: 00 PROT: 00 MDEF: 00 TECH: 00 SPD: 00 LUCK: 00
+Added Effects: 00 40
+Resist Status: 00 00 00 00 
+Unknowns: 00 00 00 00 
+
+Name:                     
+Description:                                 
+Defense:    0 Slot: 00 Wearable: 00 Cost:      0
+Resist Element: 00 STR: 00 MAG: 00 PROT: 00 MDEF: 00 TECH: 00 SPD: 00 LUCK: 00
+Added Effects: 00 00
+Resist Status: 00 00 00 00 
+Unknowns: 00 00 00 00 
+
+Name:                     
+Description:                                 
+Defense:    0 Slot: 00 Wearable: 00 Cost:      0
+Resist Element: 00 STR: 00 MAG: 00 PROT: 00 MDEF: 00 TECH: 00 SPD: 00 LUCK: 00
+Added Effects: 00 00
+Resist Status: 00 00 00 00 
+Unknowns: 00 00 00 00 
+
+Name:                     
+Description:                                 
+Defense:    0 Slot: 00 Wearable: 00 Cost:      0
+Resist Element: 00 STR: 00 MAG: 00 PROT: 00 MDEF: 00 TECH: 00 SPD: 00 LUCK: 00
+Added Effects: 00 00
+Resist Status: 00 00 00 00 
+Unknowns: 00 00 00 00 
+
+Name:                     
+Description:                                 
+Defense:    0 Slot: 00 Wearable: 00 Cost:      0
+Resist Element: 00 STR: 00 MAG: 00 PROT: 00 MDEF: 00 TECH: 00 SPD: 00 LUCK: 00
+Added Effects: 00 00
+Resist Status: 00 00 00 00 
+Unknowns: 00 00 00 00 
+
+Name:                     
+Description:                                 
+Defense:    0 Slot: 00 Wearable: 00 Cost:      0
+Resist Element: 00 STR: 00 MAG: 00 PROT: 00 MDEF: 00 TECH: 00 SPD: 00 LUCK: 00
+Added Effects: 00 00
+Resist Status: 00 00 00 00 
+Unknowns: 00 00 00 00 
+
+Name:                     
+Description:                                 
+Defense:    0 Slot: 00 Wearable: 00 Cost:      0
+Resist Element: 00 STR: 00 MAG: 00 PROT: 00 MDEF: 00 TECH: 00 SPD: 00 LUCK: 00
+Added Effects: 00 00
+Resist Status: 00 00 00 00 
+Unknowns: 00 00 00 00 
+
+Name:                     
+Description:                                 
+Defense:    0 Slot: 00 Wearable: 00 Cost:      0
+Resist Element: 00 STR: 00 MAG: 00 PROT: 00 MDEF: 00 TECH: 00 SPD: 00 LUCK: 00
+Added Effects: 00 00
+Resist Status: 00 00 00 00 
+Unknowns: 00 00 00 00 
+
+Name:                     
+Description:                                 
+Defense:    0 Slot: 00 Wearable: 00 Cost:      0
+Resist Element: 00 STR: 00 MAG: 00 PROT: 00 MDEF: 00 TECH: 00 SPD: 00 LUCK: 00
+Added Effects: 00 00
+Resist Status: 00 00 00 00 
+Unknowns: 00 00 00 00 
+
+Name:                     
+Description:                                 
+Defense:    0 Slot: 00 Wearable: 00 Cost:      0
+Resist Element: 00 STR: 00 MAG: 00 PROT: 00 MDEF: 00 TECH: 00 SPD: 00 LUCK: 00
+Added Effects: 00 00
+Resist Status: 00 00 00 00 
+Unknowns: 00 00 00 00 
+
+Name:                     
+Description:                                 
+Defense:    0 Slot: 00 Wearable: 00 Cost:      0
+Resist Element: 00 STR: 00 MAG: 00 PROT: 00 MDEF: 00 TECH: 00 SPD: 00 LUCK: 00
+Added Effects: 00 00
+Resist Status: 00 00 00 00 
+Unknowns: 00 00 00 00 
+
+Name:                     
+Description:                                 
+Defense:    0 Slot: 00 Wearable: 00 Cost:      0
+Resist Element: 00 STR: 00 MAG: 00 PROT: 00 MDEF: 00 TECH: 00 SPD: 00 LUCK: 00
+Added Effects: 00 00
+Resist Status: 00 00 00 00 
+Unknowns: 00 00 00 00 
+
+Name:                     
+Description:                                 
+Defense:    0 Slot: 00 Wearable: 00 Cost:      0
+Resist Element: 00 STR: 00 MAG: 00 PROT: 00 MDEF: 00 TECH: 00 SPD: 00 LUCK: 00
+Added Effects: 00 00
+Resist Status: 00 00 00 00 
+Unknowns: 00 00 00 00 
+
+Name:                     
+Description:                                 
+Defense:    0 Slot: 00 Wearable: 00 Cost:      0
+Resist Element: 00 STR: 00 MAG: 00 PROT: 00 MDEF: 00 TECH: 00 SPD: 00 LUCK: 00
+Added Effects: 00 00
+Resist Status: 00 00 00 00 
+Unknowns: 00 00 00 00 
+
+Name:                     
+Description:                                 
+Defense:    0 Slot: 00 Wearable: 00 Cost:      0
+Resist Element: 00 STR: 00 MAG: 00 PROT: 00 MDEF: 00 TECH: 00 SPD: 00 LUCK: 00
+Added Effects: 00 00
+Resist Status: 00 00 00 00 
+Unknowns: 00 00 00 00 
+
+Name:                     
+Description:                                 
+Defense:    0 Slot: 00 Wearable: 00 Cost:      0
+Resist Element: 00 STR: 00 MAG: 00 PROT: 00 MDEF: 00 TECH: 00 SPD: 00 LUCK: 00
+Added Effects: 00 00
+Resist Status: 00 00 00 00 
+Unknowns: 00 00 00 00 
+
+Name:                     
+Description:                                 
+Defense:    0 Slot: 00 Wearable: 00 Cost:      0
+Resist Element: 00 STR: 00 MAG: 00 PROT: 00 MDEF: 00 TECH: 00 SPD: 00 LUCK: 00
+Added Effects: 00 00
+Resist Status: 00 00 00 00 
+Unknowns: 00 00 00 00 
+
+Name:                     
+Description:                                 
+Defense:    0 Slot: 00 Wearable: 00 Cost:      0
+Resist Element: 00 STR: 00 MAG: 00 PROT: 00 MDEF: 00 TECH: 00 SPD: 00 LUCK: 00
+Added Effects: 00 00
+Resist Status: 00 00 00 00 
+Unknowns: 00 00 00 00 

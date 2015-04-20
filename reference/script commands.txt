@@ -1,0 +1,332 @@
+Script processing control is around 0x80025660
+This is usually passed as $a0 to all script commands
+Script PC is at 0x7C(SPC)
+The value passed on $a1 is the command count/iteration count. (CCT)
+
+Command			Effect
+0x00			Place object (properties set in map data)	0x00 {object idx}
+0x01			Remove object					0x01 {object idx}
+0x02			Set object position				0x02 {object idx} {x-pos} {y-pos}
+			D1 and D2 are stored at 0x36 and 0x3A, after >> 3.
+0x03			Orient object					0x03 {object idx} {direction}
+			Changes the direction an object is facing by default (or which sprite element is used).
+			0 - down, 1 - up, 2 - left, 3 - right
+			(you can get walking sprites and such with higher numbers)
+			D1 is stored at 0x6, provided slot less X (number of chara?).
+0x04			??						0x04 {data 1} {data 2} {data 3}
+0x05			Move character.					0x05 {chara slot} {stride} {speed} {direction 1} {steps 1} ... {direction n} {steps n} 0x1E
+			At the end of the direction/step pairs, 0x1E
+0x06			NaC
+0x07			??						0x07 {data}
+0x08			Null command?					0x08
+0x09			Set Event Flag?	(base 0x8006AED7)		0x09 {byte offset} {mask}
+0x0A			Clear Event Flag (base 0x8006AED7)		0x0A {byte offset} {mask}
+			When mask = 0xFE, clears the area specific flag (loads pointer at 0x8010D6D0, adds 0x9ED7 and offset)
+0x0B			??						0x0B {data 1} {data 2} {data 3}
+0x0C			??						0x0C {data 1} {data 2} {data 3}
+0x0D			*complicated  takes args and performs tasks on variable amounts of data...
+0x0E			NaC
+0x0F			Nac
+0x10			Nac
+0x11			Nac
+0x12			Loads pointer at 0x8010BDE0, if *ptr & 0x1D5 != 0, decrements position in script.
+									0x12
+0x13			NaC
+0x14			Calls 800A26BC 					0x14 {arg 4 (a3)} {val 1} {val 2}
+			if val 1 != 0, a1 = 0, a2 = 1, a3 = arg 4, stack 0x14 = val 1, stack 0x10 = val 2
+			same if val 1 == 0 && val 2 != 0
+			if val 1 == 0 && val 2 == 0, a1 = 0, a2 = 0, a3 = arg 4, stack 0x14 = 0, stack 0x10 = 0
+0x15			?? (loops through something area related)	0x15
+0x16			??  Next byte copied to script stack.  Effect?	0x16 {unknown}
+			
+			ALL SPEECH FUNCTIONS CAN FORCE DIALOGUE TO REPEAT UNDER CERTAIN CIRCUMSTANCES.
+0x17			Speech	(no chara)...maybe popup (got x)	0x17 {dialog table number} {dialog number}			//both numbers from zero
+0x18			Normal speech.					0x18 {chara slot} {dialog table number} {dialog number}		//both numbers from zero
+0x19			Speech						0x19 {data 1} {data 2} {dialog table number} {dialog number}
+0x1A			Speech						0x1A {dialog table number} {dialog number}			//both numbers from zero
+0x1B			Speech						0x1B {data 1} {data 2} {data 3} {data 4} {dialog table number} {dialog number}
+0x1C			??						0x1C {data 1} {data 2} {data 3}
+0x1D			??						0x1D {data 1}
+0x1E			Calls a function given by type, using arguments	0x1E {type} {count} {data 1} ... {data n} {ext 1} {ext 2} {ext 3}
+			stored in the data ("count" of arguments).  I think one function is adding "treasure" to objects.  Three additional bytes are expected, most likely terminators.
+			I think one of the functions is GetCurrentInteractor or something like that.  It preceded 17 a lot, but the dialogs still have portraits and names.
+0x1F			Area related.  Loads an area file.					0x1F {data 1} {data 2} {data 3}
+			data 1 - memory region 0, 8010DC50; 1, 8015DC50; 2, world map region.
+			data 2 - Area #
+			data 3 - File #
+0x20			??						0x20 {switch} variable number of arguments...needs evaluation.
+			moves the player to a location  on a map managed by a previously loaded module.
+			Data 2 is often the module's memory region and data 3 and 4 are the X and Y positions.
+0x21			??						0x21 {count} {data 1}...{data n}
+			The switch controls behavior (0-0xA).
+0x22			Some sort of search or iterative process.	0x22 
+0x23			Same as 0x0D
+
+0x24			ORs byte ctrl var 4(SC) with {data 1}.		0x24 {data 1}
+			
+0x25			Clears $a0 + 4 when D1 is 0xFE. Else 4($a0) = ~D1 & 4($a0)
+									0x25 {data 1}
+0x26			Similar to 0x22
+0x27			Almost identical to 0x26.
+0x28			Choice speech.					0x28 {chara} {unknown} {option count} {dialog table number 1} {dialog number 1} ... {dialog table number n} {dialog number n} 0x29
+0x29			Decision or wait for response
+			Runs through up to 0xFFFE bytes or until it hits
+			0xFF looking for a match
+0x2A			??						
+0x2B			Seems like it increments the script pointer	0x2B {data 1} {optional data 2}
+			Branch?
+0x2C			ORs a halfword var with 0x2000			0x2C.
+			May be a button handler...
+0x2D			ANDs the same halfword with 0xDFFF		0x2D
+			
+			
+0x2E			0x76(SC + (CCT << 4)) |= 0x40			0x2E
+			
+0x2F			ANDS 0x76(SC + (CCT << 4)) with 0xBF		0x2F
+
+0x30			?? has up to 6 data bits?			0x30 {data 1-6}
+0x31			Run commands simultaneously.			0x31 {count} {commands} {0x32}
+			Each sub-command terminated with 0xFF 0xFE
+0x32			Terminator for 0x31.  It's actuall NaC, but	
+			serves as a placeholder, I guess.
+0x33			Very similar to 0x29
+0x34			??
+0x35			Checks a mask around 801175A7			0x35 {data 1-2}
+0x36			??
+0x37			??
+0x38			??
+0x39			ORs 0x18(SC) with 0x8000			0x39
+						
+0x3A			Similar to 2D. ANDs with 0x7FFF			0x3A
+0x3B			Null Command (return)				0x3B
+0x3C			Check {data 1} against some value, if less	0x3C {data 1} {data 2}
+			transfer {data 2} to some addr using {data 1}
+			* 4 as an offset.
+0x3D			Call 0x80093FAC with {data 1} and {data 2} as	0x3D {arg 1} {arg 2}
+			arguments ($a0 is the script stack).
+			
+0x3E			Uses {data 2} as an argument to a function.	0x3E {data 1} {data 2}
+			If results is not -1, calls one of two routines
+			based on {data 1}
+			
+			Searches for a particular character in the party.
+			If found and {data 1} is zero, removes them and reorgs the party.
+			If found and {data 1} is non-zero, it simply reorgs. (not sure what this accomplishes)
+			If not found, nothing is done.
+
+0x3F			??
+
+0x40			Similar to 0x22, I think.  Seems to take no	0x40
+			arguments.
+			
+0x41			??
+
+0x42			?? Seems to take no arguments.			0x42
+
+0x43			?? Might take args in blocks of 5...
+
+0x44			??
+
+0x45			Transfers a script byte to ptr(0x8010BDE0) 	0x45 {data 1}
+			+ 0x114D
+			
+0x46			??
+
+0x47			Calls 0x80072844 with {data 1} and {data 2}	0x47 {data 1} {data 2}
+			This is MP_CharaRecStat.  This does recruitment?
+									0x47 {flag} {chara id}
+									
+0x48			?? (sprites or 3D effect?)  Seems to require 2	0x48 {data 1} {data 2} {data 3}
+			passes.
+
+0x49			Checks a byte value against {data 1}, if equal	0x49 {data 1}
+			zeroes the value.  Else, it adds 1 and
+			decrements the script counter by two
+			(repeats command until equal).  Seems like a 
+			Sleep() command.
+			
+0x4A			If {data 1} is 1, ORs the ptr(0x8010BDE0) +	0x4A {data 1}
+			0x114E with 1.  Else, exit.
+
+0x4B			Calls 0x800A1128, Same as command 21, but $a2	
+			is 1 instead of 0.  Probably an MP sub...
+			
+0x4C			??
+
+0x4D			??
+
+0x4E			Transfers {data 1} to 9($a0)			0x4E {data 1}
+
+0x4F			(ptr(0x8010D6D0) + 0x8000 + 0x1FD6) | {data 1}	0x4F {data 1}
+
+0x50			Same var as above.  Clears it, or ANDs it with	0x50 {data 1}
+			~{data 1}.  (clears when {data 1} == 0xFE)
+
+0x51			Same var as above. Repeats command until all	0x51 {data 1} {data 2}
+			mask bits in var are off ({data 2} is mask)
+			if {data 1} is not 1.  If {data 1} is 1, it
+			waits until at least one bit is on.
+			
+0x52			(ptr(0x8010D6D0) + 0x8000 + 0x1FD6) | 0x40	0x52
+
+0x53			??						0x53 {data 1} {data 2}
+
+0x54			Sends chara to loc?				0x54 {arg 1} {arg 2}
+			Looks like multi-purpose BS to do with flags.	0x54 {chara id} {flag}
+			Calls MP_CharaRecStat, is used to recruit.
+						
+			The only difference to 0x47 appears to be that
+			the order of arguments is reversed.
+
+0x55			Transfers {data 1} to a save location.		0x55 {data 1} {data 2} {data 3-n}
+			Transfers {data 2} bytes of {data 3-n} to a
+			different location.
+
+0x56		Transfers {data 1-5} to control vars.		0x56 {data 1} {data 2} {data 3} {data 4} {data 5}
+			Sets the Escape destination for a map.  Data 1 = Area, 2 = Map, 3 = Unknown flag, 4 = Map X-pos, 5 = Y-Pos
+			Area is at 0x8006AA3F, map 0x8006AA41.  Unknown is 0x8006AA45.  The X and Y Positions are halfwords at
+			0x8006AA4E and 0x8006AA50 (US version).
+
+0x57			If {data 1} != 0				0x57 {data 1}
+			(ptr(0x8010D6D0) + 0x8000 + 0x1FD6) & 0xFFFE	
+			else
+			(ptr(0x8010D6D0) + 0x8000 + 0x1FD6) | 0x1
+			
+0x58			ORs a control var with 0x8000			0x58
+
+0x59			??						0x59 {data 1} {data 2-3 (optional?)}
+			If data 1 < script chara and < 6 (battle party?)
+				data 1 = 0:  load something on slot, add 1, store
+				data 1 = 1:  load something on slot, add -1, store
+				data 1 = 2:  load next byte store on slot
+				data 1 = 3:  AND something on slot with FFFD
+				data 1 = 4:  OR it with 2
+				data 1 = 5:  AND it with 2, if > 0 repeat command?  Adds -3 to script pointer.
+			If data 1 < script chara and >= 6
+				exit
+			If data 1 > script chara and < 8
+				add 2 to script pointer unless data 1 is 2
+				exit
+			If data 1 > script char and > 8
+				is it less than 6 (WTF?)
+				yes, see first part
+				no, exit
+
+0x5A			??  Looks like three args, but some may be optional
+
+0x5B			If {data 1} is 5 call 0x800953E0 without	0x5B {data 1} {data 2}
+			fetching and storing some control word...
+			else fetch the word with {data 2} building
+			and offset, and store at a different location
+			based on {data 1} before the call...
+
+0x5C			Something to do with speech...looks like it	0x5C {data 1} {data 2} {data 3}
+			takes 3 arguments.
+			
+0x5D			??						0x5D {data 1} {data 2} {data 3}
+
+0x5E			?? 4 args?
+
+0x5F			ptr(ptr(0x8010BDE0) + 0x1234) = 0x62		0x5F
+
+0x60			Something to do with speech...looks like a 
+			variable number of args.
+			
+0x61			Uses {data 1} as an offset and {data 2} is mask	0x61 {data 1} {data 2}
+			(ptr(0x8010D6D0) + 0x9FDF + {data 1}) |= {data 2}
+			value is byte.
+			
+0x62			Uses {data 1} as an offset and {data 2} is mask	0x62 {data 1} {data 2}
+			(ptr(0x8010D6D0) + 0x9FDF + {data 1}) &= ~{data 2}
+			value is byte.
+			Unset mask...
+			
+0x63			ptr(0x8010BDE0) + {data 1} + 0x12B0 |= {data 2}	0x63 {data 1} {data 2}
+
+0x64			formula above &= ~{data 2}			0x64 {data 1} {data 2}
+
+0x65			Play sound					0x65 {table/type?} {sound number}
+
+0x66			Transfer {data 1} to ptr(0x8010BDE0) + 0x12C9	0x66 {data 1}
+
+0x67			RestorePartyHPMP				0x67
+
+0x68			??						0x68 {data 1-3}
+
+0x69			StartBGM					0x69 {data 1-4}
+
+0x6A			??						0x6A {data 1-2}
+
+0x6B			If {data 1} == 1 ~{data 2} call potchmngr fnc=1 0x6B {function} {amount/100}
+			If {data 1} == 2 call potchmngr fnc=2
+			If {data 1} == 0 call potchmngr fnc=1
+			Else exit
+			
+0x6C			If control var is 0, wait until not.		0x6C {data 1}
+			Then ??
+			
+0x6D			Change CDPos (Seek File?)			0x6D {data 1} {data 2}
+
+0x6E			NOP						0x6E
+
+0x6F			ptr(0x8010D6D0) + 0x8000 + 0x18F8 moves to	0x6F
+			0x10($a0)
+
+0x70			Transfer {count} bytes from script stack to	0x70 {count} {data 1-count}
+			ptr(0x8010BDE0) + 0x12CA + n
+
+0x71			Empties the party.				0x71
+
+0x72			??						0x72 {data 1-3}
+
+0x73			Set Chara to Level				0x73 {chara} {level}
+
+0x74			Set Chara to Relative Level			0x74 {data 1-4}
+			One is chara to set
+			Another is chara to base it on
+			Another is amount to add/subtract
+			Another is probably the add/subract flag.
+
+0x75			If {data 1} == 1				0x75 {data 1} {data 2}
+			ptr(0x8010D6D0) + 0x8000 + 0x1A66 + {data 1} = {data 2}
+			else store 0xFF
+			
+0x76			? speech ?  5 arguments?
+
+0x77			? speech ?  4 arguments?
+
+0x78			? speech ?  4 arguments?
+
+0x79			Gets a byte based on {data 1} and stores	0x79 {data 1}
+
+0x7A			Based on {data 1} sets 2 or unsets it in	0x7A {data 1}
+			HW ptr(0x8010BDE0) + 0x114E. (sets if 1)
+			
+0x7B			Branch?						0x7B {data 1}
+
+0x7C			byte(ptr(0x8010D6D0) + {data 1} + 0x9E90) |=	0x7C {data 1} {data 2}
+			{data 2}
+			
+0x7D			Like above, but unset the bits.			0x7D {data 1} {data 2}
+
+0x7E			Search for item in party inventory?		0x7E {type} {idx}
+
+0x7F			??						0x7F {data 1-3}
+
+0x80			flag and count...				0x80 {flag} {count} {data 1-count}
+
+0x81			Modify Kindness rating.				0x81 {chara}? {flag}? {amount}?
+
+0x82			Set or unset 0x2000 in ptr + offset		0x82 {offset} {data 2}
+
+0x83			byte(ptr(0x8010D6D0) + {data 1} + 0x98FE) |=	0x83 {data 1} {data 2}
+			{data 2}
+			
+0x84			unset as above					0x84 {data 2} {data 2}
+
+0x85			Set 0x4000 on var if {data 1} == 1 else unset	0x85 {data 1}
+			
+0x86			Stores {count} bytes, up to 255, to the memory  0x86 {count} {data 1-count}
+			pointed to by ptr(0x8010BDE0) + 0x12CA.
+0xFF,0xFE		Command Terminator
+

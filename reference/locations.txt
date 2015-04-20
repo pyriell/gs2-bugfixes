@@ -1,0 +1,207 @@
+0x2567A X-Pos
+0x2567C Y-Pos
+
+AA - MM
+00 - 00: Unicorn Brigade camp (beginning of game scripts)
+00 - 01: Demo ending.  Loads but scripts do not run properly.  If you wait around, Viki and Mukumuku will appear, though.
+00 - 02: Kyaro Town
+00 - 03: Intro (after jumping in river)
+00 - 04: Genkaku's Dojo
+00 - 05: Unicorn Brigade HQ
+00 - 06: Unicorn Brigade HQ, Dungeon
+00 - 07: Gallows
+00 - 08: Tenzan Pass Cliff, west of Unicorn Brigade Camp (raid).
+00 - 09: Tenzan Pass Cliff, daytime.
+00 - 0A: Tenzan Pass entrance
+00 - 0B: Genkaku's Dojo, Interior
+00 - 0C: Hillside Tree (Best Ending)
+00 - 0D: Rune of Beginning flashback.
+00 - 0E: Genkaku's Story (flashback).
+00 - 0F: Atreides Manor.
+00 - 10: Rune of Beginning flashback.
+00 - 11: Rune of Beginning flashback.
+00 - 12: Rune of Beginning flashback.
+00 - 13: Rune of Beginning flashback.
+00 - 14: Rune of Beginning flashback.
+00 - 15: Tenzan Pass (ending).
+00 - 16: Tenzan Pass
+00 - 17: Tenzan Pass, evening (ending).f
+00 - 18: Tenzan Pass
+00 - 19: Jillia's House (ending).
+
+01 - 00: Riverbank (with Viktor).
+01 - 01: Mercenary Fort
+01 - 02: Toto Village
+01 - 03: Toto Village (burned)
+01 - 04: Ryube Village
+01 - 05: Ryube Village (burned)
+01 - 06: Ryube Woods
+01 - 07: North Sparrow Pass
+01 - 08: Tsai's House
+01 - 09: Mercenary Fort (early morning)
+01 - 0A: Mercenary Fort, Interior
+01 - 0B: Rune of the Beginning Shrine, interior
+01 - 0C: Mercenary Fort
+01 - 0D: Mercenary Fort, interior
+01 - 0E: Mercenary Fort (night)
+01 - 0F: Ryube Village (in flames)
+01 - 10: North Sparrow Pass
+01 - 11: Ryube (restored)
+01 - 12: Mercenary Fort, interior (Highland attack) (crashes)
+01 - 13: Mercenary Fort (ending)
+01 - 14: Trial Road
+
+02 - 00: Muse City
+02 - 01: Muse City (night)
+02 - 02: Muse Jail Cell
+02 - 03: White Deer Inn
+02 - 04: Hillside Tree (fleeing muse)
+02 - 05: Coronet
+02 - 06: Muse-Highland Border
+02 - 07: Jillia's Tent
+02 - 08: Muse City Hall, interiors
+02 - 09: Jowstone Hill Conference Room, interior
+02 - 0A: Jowstone Hill
+02 - 0B: Sindar Ruins Hall
+02 - 0C: Sindar Ruins Hall
+02 - 0D: Sindar Ruins - Twin Snake Room
+02 - 0E: Empty Field
+02 - 0F: Muse, deserted
+02 - 10: Coronet 2nd Screen
+02 - 11: Coronet 3rd Screen
+02 - 12: Coronet Tai Ho's Shack
+02 - 13: Outside Muse (waiting for Jowy)
+02 - 14: Muse, interiors (Dr. Huan's)
+02 - 15: Muse City (Highland invasion) (open gate and no exits)
+02 - 16: Tai Ho's Shack, interiors
+02 - 17: Muse City (escape from Highland)
+02 - 18: Muse Liberation
+02 - 19: Muse City, liberated
+02 - 1A: Muse City hall, interiors
+02 - 1B: Muse City hall, interiors (night)
+02 - 1C: Hillside Tree (morning)
+02 - 1D: Outside Highland camp.
+02 - 1E: Jowstone Hill, liberated
+
+03 - 00: Kuskus
+03 - 01: Radat Sluice Gate
+03 - 02: South Window
+03 - 03: North Window
+03 - 04: Genkaku's Dojo
+03 - 05: Radat Town
+03 - 06: Cave of Wind, entrance
+03 - 07: Luca Battle, path
+03 - 08: Radat Sluice Gate (night) (coin search)
+03 - 09: North Window Castle, interiors
+03 - 0A: North Window Castle, interiors
+03 - 0B: North Window Castle, interiors
+03 - 0C: North Window Castle, interiors
+03 - 0D: North Window Castle, interiors (Neclord's Lair)
+03 - 0E: Kuskus 2nd Screen
+03 - 0F: Kuskus 3rd Screen
+03 - 10: South Window Traders, interiors
+03 - 11: Radat Path
+03 - 12: Radat Inn
+03 - 13: Kuskus SW (partial) (no exits function)
+
+04 - 00: Greenhill
+04 - 01: Forest Village
+04 - 02: Greenhill Forest (initial)
+04 - 03: Greenhill-Matilda Path
+04 - 04: Muse-Greenhill Border
+04 - 05: Greenhill Academy
+04 - 06: Greenhill Academy, interiors
+04 - 07: Greenhill Forest (Jowy?)
+04 - 08: Greenhill Forest (staging area)
+04 - 09: Greenhill Mansion, interiors
+04 - 0A: Greenhill (Meg & Gadget ending)
+04 - 0B: Greenhill (Squirrel ending)
+04 - 0C: Greenhill
+04 - 0D: Greenhill Forest (same as 7)
+04 - 0E: Greenhill Forest (liberation phase)
+04 - 0F: Greenhill Forest (test)
+04 - 10: Greenhill Academy, interiors
+
+05 - 00: Rokkaku
+05 - 01: Gregminster Town
+05 - 02: Gregminster McDohl's Mansion, interiors
+05 - 03: Gregminster Castle, interiors
+05 - 04: Banner Village
+05 - 05: Banner Pass
+05 - 06: Banner Pass
+
+06 - 00: Tinto City
+06 - 01: Tinto Mine (world map entrance)
+06 - 02: Crom
+06 - 03: Drakemouth Pass
+06 - 04: Drakemouth Pass North
+06 - 05: Drakemouth Village
+06 - 06: Tigermouth Village
+06 - 07: Tinto Shop, interiors
+06 - 08: Tinto Church, interiors
+06 - 09: Tinto Mine (bridge between areas)
+06 - 0A: Tinto Mine Depths
+06 - 0B: Cabin (Bad Ending)
+06 - 0C: Tinto, interiors (unused?)
+06 - 0D: Tinto City (no exits, etc.)
+06 - 0E: Tinto Mines (back way)
+06 - 0F: Drakemouth Pass
+06 - 10: Tinto City
+06 - 11: Tinto Interiors
+
+07 - 00: Two River
+07 - 01: Lakewest
+07 - 02: Kobold Village
+07 - 03: Two River Sewers
+07 - 04: Two River Winger Section
+07 - 05: Two River Kobold Section
+07 - 06: Two River Kobold Section (deserted)
+07 - 07: Two River (battle)
+07 - 08: Kobold Village (Hix & Tengaar sequence)
+07 - 09: Unicorn Forest
+07 - 0A: Two River, interiors (Inn)
+07 - 0B: Two River
+
+08 - 00: Rockaxe Town
+08 - 01: Rockaxe Town North
+08 - 02: Rockaxe Town Castle, exterior
+08 - 03: Rockaxe Town Castle, entrance
+08 - 04: Rockaxe Town Castle, interior (chambers, throne)
+08 - 05: Rockaxe Town Castle, interior (dungeon)
+08 - 06: Rockaxe Town Castle Parapet
+08 - 07: Rockaxe Town Castle, interior (training area)
+08 - 08: Rockaxe Town Castle, interior (balcony)
+08 - 09: Rockaxe Town Castle, interior (balcony)
+08 - 0A: Muse-Matilda Border
+08 - 0B: Highway Village
+08 - 0C: Rakutei Mountain
+08 - 0D: Matilda Liberation
+08 - 0E: Rakutei Mountain Summit
+
+09 - 00: Muse City
+09 - 01: L'Renouille
+09 - 02: L'Renouille Castle, interior
+09 - 03: L'Renouille Castle, exterior
+09 - 04: L'Renouille Castle, interior
+09 - 05: Concept Art Passageway
+09 - 06: L'Renouille Castle, interior (final save)
+09 - 07: L'Renouille Castle, interior (Beast Rune hall)
+09 - 08: Jillia's Bedchamber
+09 - 09: L'Renouille Cathedral
+09 - 0A: L'Renouille Castle, interior
+09 - 0B: Luca's Tent (day)
+09 - 0C: Luca's Tent (night)
+09 - 0D: Forest (Shu and Leon meeting)
+09 - 0E: Burning Forest
+09 - 0F: Castle Hall
+09 - 10: Sajah
+09 - 11: Unknown Dungeon
+09 - 12: L'Renouille Castle, exterior
+09 - 13: Unknown Dungeon 2
+09 - 14: Unknown Dungeon 3
+09 - 15: Unknown Dungeon 4
+09 - 16: Unknown Dungeon 5
+09 - 17: Unknown Dungeon 6
+
+0A - 00: Headquarters
+...Most of the remainder aren't setup for teleporting to.  I'll post anything interesting, if there is anything.
