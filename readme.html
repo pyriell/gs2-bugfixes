@@ -54,6 +54,12 @@
 	<h4>GS1 Load - Names Fix</h4>
 	Corrects the re-encoding of names so that your hero from Suikoden will have the name you gave him.  It also fixes the import of the Castle name from the original game, but that can only be seen in one Old Book.
 	
+	<h4>GS1 Load - Rune Import</h4>
+	Changes the Rune Import from Suikoden.  The original requires the character have all three rune slots empty, which limits the field to five characters, and then does some garbled checks that will never actually work before actually applying the runes.  Removed the garbled checks, and changed the logic to be simply that the character has an open rune slot, and the slot is unlocked at their current level (including bonuses from earlier in the import).  Check the Suikosource.com guide for a list of runes that may be transferred.  The short list is first-tier spell runes like Fire, and attack runes with a small benefit like Double-Beat and Counter.
+
+	<h4>GS1 Load - Tai Ho</h4>
+	Swaps Vincent, who was unplayable in Suikoden, for Tai Ho, with a default level of 27.  This gives him the same level bonus opportunities as Hix, Luc, and Tengaar, with a maximum level of 47 if he is 99 in your Suikoden save and wins the +5 bonus for highest level.  His weapon can be as high as level 10.  With the Rune Import patch, he will still not be able to transfer runes.  He never gets a second slot, and he starts with a Killer Rune affixed to his lone slot in Suikoden 2.
+	
 	<h4>Inns Fix</h4>
 	Prevents inns from healing you for free.
 	

@@ -22,16 +22,6 @@ PackageInfo = {
 		{ Name = "Suikoden II", Region = "North America", Language = "English", Serial = "SLUS_009.58", PatchDir="patch\\NA",
 		  Patches = {
 			{
-				Name="Armor Effects/Bonuses Fix",
-				Description="Fixes several bonuses (status resistances, etc.) so they apply to armor as indicated by descriptions.",
-				Active = 1, Toggle = 0,
-				Files = {
-					{ Type = "PPF", PatchFileName = "armor_fx_1.ppf", GameFileName = "BP0_FST.BIN" },
-					{ Type = "PPF", PatchFileName = "armor_fx_2.ppf", GameFileName = "BP0_SEC.BIN" }
-				}
-			},
-
-			{
 				Name = "Badeaux Appears",
 				Description = "Badeaux will appear in the castle grounds near the pond behind the library.",
 				Active = 1, Toggle = 0,
@@ -130,6 +120,24 @@ PackageInfo = {
 				Active = 1, Toggle = 0,
 				Files = {
 					{ Type = "PPF", PatchFileName = "gs1names.ppf", GameFileName = "G1LOAD.BIN" }
+				}
+			},
+
+			{
+				Name="GS1 Load - Tai Ho Import",
+				Description="Removes Vincent (unplayable in GS1) and adds import bonuses for Tai Ho",
+				Active = 1, Toggle = 0,
+				Files = {
+					{ Type = "PPF", PatchFileName = "gs1taiho.ppf", GameFileName = "G1LOAD.BIN" }
+				}
+			},
+
+			{
+				Name="GS1 Load - Rune Import",
+				Description="Patches the broken Rune Import so that characters with unlocked, open slots can transfer runes.",
+				Active = 1, Toggle = 0,
+				Files = {
+					{ Type = "PPF", PatchFileName = "gs1runes.ppf", GameFileName = "G1LOAD.BIN" }
 				}
 			},
 
