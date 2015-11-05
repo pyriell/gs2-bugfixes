@@ -115,6 +115,16 @@ PackageInfo = {
 			},
 
 			{
+				Name="Gremio Text Fix",
+				Description="Fixes missing pointers for Gremio dialogues that should appear when you try to leave Banner.",
+				Active = 1, Toggle = 0,
+				Files = {
+					{ Type = "PPF", PatchFileName = "gremiotext.ppf", GameFileName = "VF05.BIN" }
+				}
+			},
+
+
+			{
 				Name="GS1 Load - Names Fix",
 				Description="Fixes the transfer of the hero and castle Names from the original Genso Suikoden.",
 				Active = 1, Toggle = 0,
