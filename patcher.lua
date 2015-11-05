@@ -236,6 +236,15 @@ PackageInfo = {
 			},
 
 			{
+				Name="North Sparrow Escape Talisman Fix",
+				Description="Prevents using an Escape Talisman in North Sparrow from allowing you to pass the guards, and return to Highland early.",
+				Active=1,
+				Files = {
+					{ Type = "PPF", PatchFileName = "nsparrowentry.ppf", GameFileName = "VB17.BIN" }
+				}
+			},
+
+			{
 				Name="Rune Speed Fix",
 				Description="Fixes an intermittent bug that gives healing spells' temporary speed boost to Rune Unites.",
 				Active=1,
