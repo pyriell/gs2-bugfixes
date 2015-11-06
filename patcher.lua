@@ -115,6 +115,15 @@ PackageInfo = {
 			},
 
 			{
+				Name="Gregminster Rune Shop Fix",
+				Description="Alters a script for the rune shop in Gregminster so only one set of rare finds is available, regardless of where the hero stands.",
+				Active = 1, Toggle = 0,
+				Files = {
+					{ Type = "PPF", PatchFileName = "gregminsterruneshop.ppf", GameFileName = "VF03.BIN" }
+				}
+			},
+
+			{
 				Name="Gremio Text Fix",
 				Description="Fixes missing pointers for Gremio dialogues that should appear when you try to leave Banner.",
 				Active = 1, Toggle = 0,
