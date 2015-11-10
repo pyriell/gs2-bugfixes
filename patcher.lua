@@ -254,6 +254,15 @@ PackageInfo = {
 			},
 
 			{
+				Name="Rope Climb - Turtle Plans #4",
+				Description="Prevents Turtle Plans #4 from being awarded multiple times by the Rope Climb mini-game.",
+				Active=1,
+				Files = {
+					{ Type = "PPF", PatchFileName = "ropeturtleplans.ppf", GameFileName = "KIKORI.BIN" }
+				}
+			},
+
+			{
 				Name="Rune Speed Fix",
 				Description="Fixes an intermittent bug that gives healing spells' temporary speed boost to Rune Unites.",
 				Active=1,
