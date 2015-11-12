@@ -76,6 +76,15 @@ PackageInfo = {
 			},
 
 			{
+				Name="Emilia Dialogue Fix",
+				Description="Force Emilia to use the Hero's alias during Greenhill events.  Mostly for consistency, as the aliases are abandoned quickly by everyone else.",
+				Active = 1, Toggle = 0,
+				Files = {
+					{ Type = "PPF", PatchFileName = "emiliaspy.ppf", GameFileName = "VE07.BIN" }
+				}
+			},
+
+			{
 				Name="Forgiver Sign Fix",
 				Description="Fix display.  Forgiver Sign does zero damage, but a huge value is displayed.",
 				Active = 1, Toggle = 0,
