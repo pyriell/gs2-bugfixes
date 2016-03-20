@@ -29,8 +29,8 @@
 
 
 ; Magic
-.org 0x8003E428
-.area 0x8003E44C-.
+.org 0x8003E42C
+.area 0x8003E450-.
 	jalr	$v0
 	lb      $s0, 0x51($s1)   ; Get spell # for rune -- being tricky here since $s0's value won't be needed again.
 	nop						 ; Only really need filler, but this shuts the assembler up.
