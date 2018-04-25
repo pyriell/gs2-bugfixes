@@ -4,6 +4,7 @@ This patch fixes numerous bugs that are present in retail versions of <i>Suikode
 1. A disc image of the original game in your preferred language*.  Files with .bin, .img, and .iso extensions may be supported, but the image must be plain with no additional headers or other changes that certain rippers or compression tools might introduce.  When in doubt, try to convert the image to a standard ISO image first.
 2. A copy of this patch.
 3. About 1 GB of total storage space.
+
 **Currently only the North American (US/Canada), Japanese, European English, Spanish, and German versions may be patched.  Source code is available for partial French and Italian patches, but you will have to build the patch files yourself and alter the patch script to apply them.**
 ## Applying
 1. Run <i>gs2patcher.bat</i> to launch the patch dialog.  The message indicating an error loading lua-interface.lua can be ignored.
@@ -11,7 +12,7 @@ This patch fixes numerous bugs that are present in retail versions of <i>Suikode
 3. Use the browse button by "Original Image" to select your original copy of the game.
 4. Use the browse button by "Patched Image" to select a location for your patched file.  The process will not allow you to patch directly to the original, it must create a copy.  If you just want the copy to be the original name plus " patched" or something like that, the easiest way to browse again to your original file, select it, and then change the name within the "Save File..." dialog.  You should also not create your patch file in any of the bug fix patch's folders.
 5. Select the patches you wish to apply by highlighting them in the list and then clicking the appropriate arrow button.  You can see a brief description of the patch by highlighting it.
-
+<p>
 By default, all bugs are fixed and the most common options are chosen for bugs with multiple fix options, e.g. the Kindness Rune which has a fix that causes a penalty to attack when the value is negative, or a fix that merely gives no bonus at all.
 6. Some patches you select may exclude or require others, these will be activated or deactivated automatically as needed.
 7. When you are satisfied with your selections, click "Apply Patch" and wait for the process to finish.  A progress bar will show changes periodically, but some hefty patches (such as the audio fix for the NA version) can run for a long time, and may cause the patch dialog to stop responding.  This is normal.
