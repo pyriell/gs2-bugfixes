@@ -1,0 +1,12 @@
+-------------------------------------------------
+Version: 2.02.076 Date: 2018-04-25
+
+Additions:
+	None
+
+Issues Fixed:
+	- The string "True Holy" occurred in one of Richmond's investigations and was being truncated by the "Godspeed" replacement.
+	  Process changed to preserve remaining characters if a null character doesn't follow the "y".  An extra null is always inserted.
+	- The string "Circuret" appears in an Old Book.  It wasn't being replaced due the terminating null being included in the search.
+	  Applied a similar fix as for the True Holy rune, and removed the terminating null from the string search.
+	- Changed the description of the "GS1 Load - Tai Ho" patch in the UI, to clarify what's being done.

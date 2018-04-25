@@ -16,8 +16,8 @@ SearchPatches =
 PackageInfo = {
 	Name 		= "Gensou Suikoden II Bug Fix Patch",
 	ShortName	= "GS2 Bug Fix Patch",
-	Version		= "2.01.065b",
-	Date		= "2013-12-19",
+	Version		= "2.02.076",
+	Date		= "2018-04-25",
 	Games		= {
 		{ Name = "Suikoden II", Region = "North America", Language = "English", Serial = "SLUS_009.58", PatchDir="patch\\NA",
 		  Patches = {
@@ -163,7 +163,7 @@ PackageInfo = {
 
 			{
 				Name="GS1 Load - Tai Ho Import",
-				Description="Removes Vincent (unplayable in GS1) and adds import bonuses for Tai Ho",
+				Description="Vincent (unplayable in GS1) is removed from the import and import bonuses are added for Tai Ho",
 				Active = 1, Toggle = 0,
 				Files = {
 					{ Type = "PPF", PatchFileName = "gs1taiho.ppf", GameFileName = "G1LOAD.BIN" }
@@ -6855,6 +6855,12 @@ function ApplyGodspeedPatch(file, name)
 			file:wseek(i)
 			file:writeU32(0x23141F41);
 			file:writeU32(0x14151520);
+			--Rune name appears in an investigation, so may need to preserve the remaining string.
+			local j = i + 9
+			while (file[j] ~= 0) do
+				file:writeU8(file[j]);
+				j=j+1;
+			end
 			file:writeU8(0);
 			i = file:seek(file:wtell());
 			touched = true;
@@ -6914,11 +6920,18 @@ function ApplyCircletPatch(file, name)
 		 and file[i + 4] == 0x25
 		 and file[i + 5] == 0x22
 		 and file[i + 6] == 0x15
-		 and file[i + 7] == 0x24
-		 and file[i + 8] == 0x00) then
+		 and file[i + 7] == 0x24) then
 			file:wseek(i)
 			file:writeU32(0x1322193D);
-			file:writeU32(0x0024151C);
+			file:writeU8(0x1C);
+			file:writeU8(0x15);
+			file:writeU8(0x24);
+			--Item name appears in a book, so may need to preserve the remaining string.
+			local j = i + 8
+			while (file[j] ~= 0) do
+				file:writeU8(file[j]);
+				j=j+1;
+			end
 			file:writeU8(0);
 			i = file:seek(file:wtell());
 			touched = true;
