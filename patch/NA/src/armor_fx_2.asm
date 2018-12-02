@@ -16,8 +16,8 @@
 .headersize 0
 
 ; Fix the Repel Magic effect so it applies to the Robe of Mist
-.org 0x800394E8
-.area 0x800394EC-.
+.org 0x800394E4
+.area 0x800394E8-.
 	li $a1, 0x1F
 .endarea
 
