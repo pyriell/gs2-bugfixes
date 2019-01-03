@@ -2921,6 +2921,19 @@ PackageInfo = {
 				Description="Translates the Names of the enemies in Tenzan pass, and adds the formations that contain the Chimera-type monster to the encounter table.",
 				Active=1,
 				Files = {{ Type="PPF", PatchFileName = "tenzan.ppf", GameFileName = "VA11.BIN" }}
+			},
+			
+			{
+				Name="Two River Crash Fix",
+				Description="Fixes a translation issue that can cause the game to crash during the skirmish with Kiba's forces outside Two River.",
+				Active=1,
+				Files = {{ Type= "PPF", PatchFileName = "tworivercrash_VH01.ppf", GameFileName = "VH01.BIN" },
+						 { Type= "PPF", PatchFileName = "tworivercrash_VH06.ppf", GameFileName = "VH06.BIN" },
+						 { Type= "PPF", PatchFileName = "tworivercrash_VH07.ppf", GameFileName = "VH07.BIN" },
+						 { Type= "PPF", PatchFileName = "tworivercrash_VH08.ppf", GameFileName = "VH08.BIN" },
+						 { Type= "PPF", PatchFileName = "tworivercrash_VH11.ppf", GameFileName = "VH11.BIN" },
+						 { Type= "PPF", PatchFileName = "tworivercrash_VH12.ppf", GameFileName = "VH12.BIN" }
+						}
 			}
 		  }, -- end patches
 		  LBAPatchList = {
