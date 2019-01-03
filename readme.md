@@ -85,7 +85,7 @@ Makes the Matilda Gate a fixed object so that it cannot be pushed out of the way
 ### Music Fixes (NA only)
 Repairs the audio data encoded on the disc so that all songs and sound effects will play.  Only required in the US/Canada version.  The issue was not present in Japan, and was fixed for Europe.
 
-### Rune Speed Fix (Currently NA Only; Beta)
+### Rune Speed Fix (Currently NA Only)
 When Rune Unites are used, they replace data indicating what Rune and spell were used.  A routine that checks if the spell grants a temporary speed boost (in general healing spells give 1.3x speed when executed) will use this data as if it was Rune + Spell, and can retrieve garbage data.  Sometimes this causes Unites to get a speed boost when they shouldn't.  Fixes the routine to not bother looking when a Unite has been inserted into the data.
 
 ### Rune Unite Fix
@@ -97,8 +97,11 @@ Fix the scroll shop so that it does not display the names of unidentified (un-ap
 ### Tenzan Pass Enemies Fix
 Translate the names of the enemies that are encountered in Tenzan late in the game.  Also restores the Chimaera parties to the encounter list so you can fight them.
 
-### Tinto Glitch Fix (Currently NA Only; Beta)
+### Tinto Glitch Fix (Currently NA Only)
 Fixes a scripting problem that would make it impossible to progress or to even leave Gustav's Manor when you are returned there after Jess orders his troops to attack Neclord.
 
 ### Trade Gossip Translation (NA Only)
 Translate the Trade Gossip (UWASA text).  These lines of text were left untranslated in the US/Canada version only.
+
+### Two River Crash Fix (Germany Only)
+During the skirmish with Kiba and his forces at Two River, the German version can crash due to the text containing more line-breaks than the dialogue box allows for player options. The fix removes a line break from one dialogue string contained in 6 files.
