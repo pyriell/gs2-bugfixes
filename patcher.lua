@@ -16,8 +16,8 @@ SearchPatches =
 PackageInfo = {
 	Name 		= "Gensou Suikoden II Bug Fix Patch",
 	ShortName	= "GS2 Bug Fix Patch",
-	Version		= "2.02.076",
-	Date		= "2018-04-25",
+	Version		= "2.02.078",
+	Date		= "2019-01-03",
 	Games		= {
 		{ Name = "Suikoden II", Region = "North America", Language = "English", Serial = "SLUS_009.58", PatchDir="patch\\NA",
 		  Patches = {
