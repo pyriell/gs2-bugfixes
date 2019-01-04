@@ -2,10 +2,11 @@
 Version: 2.02.078 Date: 2019-01-03
 
 Additions:
-	Added fixes for crashes that can occur in the German version when defending Two River, and when meeting Lepant in Gregminster.
+	- Added fixes for crashes that can occur in the German version when defending Two River, and when meeting Lepant in Gregminster.
 
 Issues Fixed:
-	None
+	- The patch for Armor effects was one operation off for the second round of battle (BP0_SEC.BIN) and beyond, causing the Robe
+	  of Mist to not get its bonuses.
 
 -------------------------------------------------
 Version: 2.02.076 Date: 2018-04-25
