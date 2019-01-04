@@ -52,6 +52,10 @@ Repairs a cosmetic issue where Forgiver Sign would appear to cause strangely mas
 ### Gozz Rune Name Fixes
 Will change the name of the Gozz Rune to either "Gozu" (more appropriate if you are familiar with Japanese myths) or "Minotaur" (for Westerners).
 
+### Gregminster Crash Fix (Germany Only)
+When meeting Lepant, and reviewing the recruits he offers, the German version can crash due to the text containing more line-breaks than the dialogue box allows for player options. The fix removes line breaks from two dialogue strings that are both roughly, "review notes on <person>."
+
+
 ### GS1 Load - Names Fix
 Corrects the re-encoding of names so that your hero from Suikoden will have the name you gave him.  It also fixes the import of the Castle name from the original game, but that can only be seen in one Old Book.
 

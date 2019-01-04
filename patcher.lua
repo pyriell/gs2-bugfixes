@@ -2841,6 +2841,13 @@ PackageInfo = {
 				Search = {{ Value="GOZZ", Replace="GOZU", Case="false", VarQual="gozz" }},
 				Excludes = { "Gozz Rune Renamed Minotaur Rune" }
 			},
+			
+			{
+				Name="Gregminster Recruiting Crash Fix",
+				Description="Fixes a crash that occurs when meeting Lepant, if you take a moment to review the recruits he offers.",
+				Active = 1, Toggle = 0,
+				Files = {{ Type = "PPF", PatchFileName = "gregminstercrash.ppf", GameFileName = "VF04.BIN" }}
+			},
 
 			{
 				Name="Inns Fix",
